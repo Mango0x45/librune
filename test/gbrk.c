@@ -7,6 +7,8 @@
 #include <gbrk.h>
 #include <utf8.h>
 
+#define die(...) err(EXIT_FAILURE, __VA_ARGS__)
+
 static void test(char *);
 
 int
@@ -25,7 +27,7 @@ main(int argc, char **argv)
 	}
 
 	if (!(fp = fopen(argv[1], "r")))
-		err(1, "fopen");
+		die("fopen");
 
 	while ((nr = getline(&line, &n, fp)) > 0) {
 		line[nr - 1] = 0;
@@ -33,9 +35,10 @@ main(int argc, char **argv)
 	}
 
 	if (nr == -1 && ferror(fp))
-		err(1, "getline");
+		die("getline");
 
 	fclose(fp);
+	free(line);
 	return EXIT_SUCCESS;
 }
 
@@ -44,11 +47,10 @@ test(char *raw)
 {
 	int n;
 	rune ch;
-	char8_t *p;
-	static char8_t *buf;
+	char8_t *p, *buf;
 
-	if (!buf && !(buf = malloc(4096)))
-		err(1, "malloc");
+	if (!(buf = malloc(4096)))
+		die("malloc");
 
 	p = buf;
 	while (sscanf(raw, "%" SCNxRUNE "%n", &ch, &n)) {
@@ -72,4 +74,5 @@ test(char *raw)
 			fputs("÷", stdout);
 	}
 	putchar('\n');
+	free(buf);
 }
