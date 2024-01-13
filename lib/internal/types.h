@@ -44,4 +44,6 @@ typedef uint_fast32_t rune;
 #define SCNoRUNE _RUNE_SCNDEF(o)
 #define SCNxRUNE _RUNE_SCNDEF(x)
 
+#define RUNE_C(x) UINT32_C(x)
+
 #endif /* !RUNE_INTERNAL_TYPES_H */
