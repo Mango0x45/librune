@@ -1,0 +1,7 @@
+.cache/
+*.o
+compile_commands.json
+failures
+main
+main.c
+Makefile
