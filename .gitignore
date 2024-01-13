@@ -1,4 +1,5 @@
 .cache/
+test/gbrk
 *.o
 compile_commands.json
 failures
