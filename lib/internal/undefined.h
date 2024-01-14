@@ -2,7 +2,7 @@
 #define RUNE_INTERNAL_UNDEFINED_H
 
 #ifndef unreachable
-#	if __STDC_VERSION__ >= 202311L
+#	if RUNE_IS_23
 #		include <stddef.h>
 #	elif defined(__GNUC__) || defined(__clang__)
 #		define unreachable() __builtin_unreachable()

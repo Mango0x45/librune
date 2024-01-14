@@ -7,12 +7,10 @@
 #ifndef RUNE_INTERNAL_TYPES_H
 #define RUNE_INTERNAL_TYPES_H
 
-#if __STDC_VERSION__ >= 202311L
-#	define RUNE_C23 1
-#endif
+#include "c23.h"
 
 #include <inttypes.h>
-#if !RUNE_C23
+#if !RUNE_IS_23
 #	include <stdbool.h>
 #endif
 
