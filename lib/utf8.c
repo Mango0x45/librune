@@ -90,13 +90,13 @@ rtou8(char8_t *s, rune ch)
 const char8_t *
 u8next(rune *ch, const char8_t *s)
 {
-	return *s ? s + u8tor(ch, s) : NULL;
+	return *s ? s + u8tor(ch, s) : nullptr;
 }
 
 const char8_t *
 u8next_uc(rune *ch, const char8_t *s)
 {
-	return *s ? s + u8tor_uc(ch, s) : NULL;
+	return *s ? s + u8tor_uc(ch, s) : nullptr;
 }
 
 const char8_t *
@@ -107,7 +107,7 @@ u8prev(rune *ch, const char8_t *s, const char8_t *start)
 	ptrdiff_t d = s - start;
 
 	if (d <= 0) {
-		return NULL;
+		return nullptr;
 	} else if (U1(s[-1])) {
 		*ch = s[-1];
 		off = 1;
@@ -135,7 +135,7 @@ const char8_t *
 u8prev_uc(rune *ch, const char8_t *s, const char8_t *start)
 {
 	if (s - start <= 0) {
-		return NULL;
+		return nullptr;
 	} else if (U1(s[-1])) {
 		*ch = s[-1];
 		return s - 1;
