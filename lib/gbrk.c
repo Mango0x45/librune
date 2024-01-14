@@ -21,7 +21,7 @@ struct gbrk_state {
 static bool u8isgbrk(rune, rune, struct gbrk_state *);
 static gbrk_prop getprop(rune);
 
-char8_t *
+const char8_t *
 u8gbrk_next(const char8_t *s)
 {
 	int n;
@@ -38,7 +38,7 @@ u8gbrk_next(const char8_t *s)
 		ch1 = ch2;
 	}
 
-	return (char8_t *)s;
+	return s;
 }
 
 bool

@@ -3,6 +3,6 @@
 
 #include "internal/types.h"
 
-char8_t *u8gbrk_next(const char8_t *);
+const char8_t *u8gbrk_next(const char8_t *);
 
 #endif /* !RUNE_GBRK_H */

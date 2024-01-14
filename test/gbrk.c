@@ -64,7 +64,7 @@ test(char *raw)
 	}
 	*p = 0;
 
-	for (const char8_t *s = buf; p = u8gbrk_next(s), *s; s = p) {
+	for (const char8_t *p, *s = buf; p = u8gbrk_next(s), *s; s = p) {
 		while (s < p) {
 			s += u8tor(&ch, s);
 			printf("%04" PRIXRUNE, ch);
