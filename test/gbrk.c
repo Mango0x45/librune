@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 #include <gbrk.h>
+#include <rune.h>
 #include <utf8.h>
 
 #define die(...) err(EXIT_FAILURE, __VA_ARGS__)

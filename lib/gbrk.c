@@ -3,6 +3,7 @@
 #include "gbrk.h"
 #include "utf8.h"
 
+#include "internal/common.h"
 #include "internal/gbrk_lookup.h"
 
 #define lengthof(a) (sizeof(a) / sizeof(*(a)))

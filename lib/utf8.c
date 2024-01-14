@@ -3,7 +3,7 @@
 #include "rune.h"
 #include "utf8.h"
 
-#include "internal/undefined.h"
+#include "internal/common.h"
 
 #define U1(x) (((x)&0x80) == 0x00)
 #define U2(x) (((x)&0xE0) == 0xC0)
