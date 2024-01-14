@@ -12,6 +12,8 @@
 #include <inttypes.h>
 #if !RUNE_IS_23
 #	include <stdbool.h>
+#	include <stddef.h>
+#	define nullptr NULL
 #endif
 
 typedef unsigned char char8_t;
