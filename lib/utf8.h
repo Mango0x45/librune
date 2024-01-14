@@ -7,7 +7,11 @@
 
 int u8tor(rune *, const char8_t *);
 int u8tor_uc(rune *, const char8_t *);
-
 int rtou8(char8_t *, rune);
+
+const char8_t *u8next(rune *, const char8_t *);
+const char8_t *u8next_uc(rune *, const char8_t *);
+const char8_t *u8prev(rune *, const char8_t *, const char8_t *);
+const char8_t *u8prev_uc(rune *, const char8_t *, const char8_t *);
 
 #endif /* !RUNE_UTF8_H */

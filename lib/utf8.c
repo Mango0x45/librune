@@ -11,10 +11,12 @@
 #define U4(x) (((x)&0xF8) == 0xF0)
 #define UC(x) (((x)&0xC0) == 0x80)
 
+static bool u8rvalid(rune);
+
 int
 u8tor(rune *ch, const char8_t *s)
 {
-	int n;
+	int n = 0;
 
 	if (U1(s[0])) {
 		*ch = s[0];
@@ -29,18 +31,13 @@ u8tor(rune *ch, const char8_t *s)
 		*ch = ((s[0] & 0x07) << 18) | ((s[1] & 0x3F) << 12)
 		    | ((s[2] & 0x3F) << 6) | (s[3] & 0x3F);
 		n = 4;
-	} else
-		goto err;
-
-	if ((*ch >= 0xD800 && *ch <= 0xDFFF) || *ch == 0xFFFE || *ch == 0xFFFF
-	    || *ch > RUNE_MAX)
-	{
-err:
-		*ch = RUNE_ERROR;
-		return 1;
 	}
 
-	return n;
+	if (n && u8rvalid(*ch))
+		return n;
+
+	*ch = RUNE_ERROR;
+	return 1;
 }
 
 int
@@ -88,4 +85,78 @@ rtou8(char8_t *s, rune ch)
 	}
 
 	unreachable();
+}
+
+const char8_t *
+u8next(rune *ch, const char8_t *s)
+{
+	return *s ? s + u8tor(ch, s) : NULL;
+}
+
+const char8_t *
+u8next_uc(rune *ch, const char8_t *s)
+{
+	return *s ? s + u8tor_uc(ch, s) : NULL;
+}
+
+const char8_t *
+u8prev(rune *ch, const char8_t *s, const char8_t *start)
+{
+	int off;
+	bool match = true;
+	ptrdiff_t d = s - start;
+
+	if (d <= 0) {
+		return NULL;
+	} else if (U1(s[-1])) {
+		*ch = s[-1];
+		off = 1;
+	} else if (d > 1 && UC(s[-1]) && U2(s[-2])) {
+		*ch = ((s[-2] & 0x1F) << 6) | (s[-1] & 0x3F);
+		off = 2;
+	} else if (d > 2 && UC(s[-1]) && UC(s[-2]) && U2(s[-3])) {
+		*ch = ((s[-3] & 0x0F) << 12) | ((s[-2] & 0x3F) << 6) | (s[-1] & 0x3F);
+		off = 3;
+	} else if (d > 3 && UC(s[-1]) && UC(s[-2]) && UC(s[-3]) && U2(s[-4])) {
+		*ch = ((s[-4] & 0x07) << 18) | ((s[-3] & 0x3F) << 12)
+		    | ((s[-2] & 0x3F) << 6) | (s[-1] & 0x3F);
+		off = 4;
+	} else
+		match = false;
+
+	if (match && u8rvalid(*ch))
+		return s - off;
+
+	*ch = RUNE_ERROR;
+	return s - 1;
+}
+
+const char8_t *
+u8prev_uc(rune *ch, const char8_t *s, const char8_t *start)
+{
+	if (s - start <= 0) {
+		return NULL;
+	} else if (U1(s[-1])) {
+		*ch = s[-1];
+		return s - 1;
+	} else if (UC(s[-1]) && U2(s[-2])) {
+		*ch = ((s[-2] & 0x1F) << 6) | (s[-1] & 0x3F);
+		return s - 2;
+	} else if (UC(s[-1]) && UC(s[-2]) && U2(s[-3])) {
+		*ch = ((s[-3] & 0x0F) << 12) | ((s[-2] & 0x3F) << 6) | (s[-1] & 0x3F);
+		return s - 3;
+	} else if (UC(s[-1]) && UC(s[-2]) && UC(s[-3]) && U2(s[-4])) {
+		*ch = ((s[-4] & 0x07) << 18) | ((s[-3] & 0x3F) << 12)
+		    | ((s[-2] & 0x3F) << 6) | (s[-1] & 0x3F);
+		return s - 4;
+	}
+
+	unreachable();
+}
+
+bool
+u8rvalid(rune ch)
+{
+	return !((ch >= 0xD800 && ch <= 0xDFFF) || ch == 0xFFFE || ch == 0xFFFF
+	         || ch > RUNE_MAX);
 }
