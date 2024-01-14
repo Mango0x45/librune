@@ -11,6 +11,12 @@
 #define U4(x) (((x)&0xF8) == 0xF0)
 #define UC(x) (((x)&0xC0) == 0x80)
 
+/* Maximum value of a 1–4-byte long UTF-8 sequence */
+#define _1B_MAX RUNE_C(0x00007F)
+#define _2B_MAX RUNE_C(0x0007FF)
+#define _3B_MAX RUNE_C(0x00FFFF)
+#define _4B_MAX RUNE_C(0x10FFFF)
+
 static bool u8rvalid(rune);
 
 int
@@ -64,19 +70,19 @@ u8tor_uc(rune *ch, const char8_t *s)
 int
 rtou8(char8_t *s, rune ch)
 {
-	if (ch < 0x80) {
+	if (ch <= _1B_MAX) {
 		s[0] = ch;
 		return 1;
-	} else if (ch < 0x800) {
+	} else if (ch <= _2B_MAX) {
 		s[0] = (ch >> 6) | 0xC0;
 		s[1] = (ch & 0x3F) | 0x80;
 		return 2;
-	} else if (ch < 0x10000) {
+	} else if (ch <= _3B_MAX) {
 		s[0] = (ch >> 12) | 0xE0;
 		s[1] = ((ch >> 6) & 0x3F) | 0x80;
 		s[2] = (ch & 0x3F) | 0x80;
 		return 3;
-	} else if (ch < 0x110000) {
+	} else if (ch <= _4B_MAX) {
 		s[0] = (ch >> 18) | 0xF0;
 		s[1] = ((ch >> 12) & 0x3F) | 0x80;
 		s[2] = ((ch >> 6) & 0x3F) | 0x80;
