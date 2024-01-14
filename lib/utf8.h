@@ -9,6 +9,8 @@ int u8tor(rune *, const char8_t *);
 int u8tor_uc(rune *, const char8_t *);
 int rtou8(char8_t *, rune);
 
+int u8rwdth(rune);
+
 const char8_t *u8next(rune *, const char8_t *);
 const char8_t *u8next_uc(rune *, const char8_t *);
 const char8_t *u8prev(rune *, const char8_t *, const char8_t *);

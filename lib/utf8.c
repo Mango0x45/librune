@@ -93,6 +93,16 @@ rtou8(char8_t *s, rune ch)
 	unreachable();
 }
 
+int
+u8rwdth(rune ch)
+{
+	return ch <= _1B_MAX ? 1
+	     : ch <= _2B_MAX ? 2
+	     : ch <= _3B_MAX ? 3
+	     : ch <= _4B_MAX ? 4
+	                     : 0;
+}
+
 const char8_t *
 u8next(rune *ch, const char8_t *s)
 {
