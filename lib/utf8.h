@@ -3,8 +3,6 @@
 
 #include "internal/types.h"
 
-#define RUNE_ERROR   ((rune)0xFFFD)
-#define RUNE_MAX     ((rune)RUNE_C(0x10FFFF))
 #define UTF8_LEN_MAX (4)
 
 int u8tor(rune *, const char8_t *);

@@ -1,5 +1,6 @@
 #include <stddef.h>
 
+#include "rune.h"
 #include "utf8.h"
 
 #include "internal/undefined.h"
