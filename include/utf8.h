@@ -4,6 +4,7 @@
 #if __STDC_VERSION__ < 202311L
 #	include <stdbool.h>
 #endif
+#include <stddef.h>
 
 #include "internal/types.h"
 
@@ -15,6 +16,8 @@ int rtou8(char8_t *, rune);
 
 bool u8validr(rune);
 int u8wdth(rune);
+
+size_t u8len(const char8_t *);
 
 const char8_t *u8next(rune *, const char8_t *);
 const char8_t *u8next_uc(rune *, const char8_t *);
