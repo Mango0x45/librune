@@ -4,17 +4,87 @@
 
 #include "internal/common.h"
 
-const char8_t *
-u8rchr(const char8_t *s, rune ch1)
+static void *
+_memrchr(const void *s, char8_t c, size_t n)
 {
-	rune ch2;
-	const char8_t *p = nullptr;
-
-	if (ch1 <= _1B_MAX)
-		return (const char8_t *)strchr((char *)s, ch1);
-	for (int n = u8tor(&ch2, s); *s; s += n) {
-		if (ch1 == ch2)
-			p = s;
+	const char8_t *p = (const char8_t *)s + n - 1;
+	while (n-- > 0) {
+		if (*p == c) {
+			return (void *)p;
+		}
+		p--;
 	}
-	return p;
+	return nullptr;
+}
+
+static const char8_t *
+memrchr2(const char8_t *h, size_t k, const char8_t *n)
+{
+	uint16_t hw, nw;
+	const char8_t *H = h + k - 1;
+	hw = H[-1] << 8 | H[-0];
+	nw = n[+0] << 8 | n[+1];
+
+	for (H -= 2, k -= 2; k; k--, hw = hw >> 8 | (*H-- << 8)) {
+		if (hw == nw)
+			return H + 1;
+	}
+
+	return hw == nw ? H + 1 : nullptr;
+}
+
+static const char8_t *
+memrchr3(const char8_t *h, size_t k, const char8_t *n)
+{
+	uint32_t hw, nw;
+	const char8_t *H = h + k - 1;
+	hw = H[-2] << 24 | H[-1] << 16 | H[-0] << 8;
+	nw = n[+0] << 24 | n[+1] << 16 | n[+2] << 8;
+
+	for (H -= 3, k -= 3; k;
+	     k--, hw = (hw >> 8 | (*H-- << 24)) & UINT32_C(0xFFFFFF00))
+	{
+		if (hw == nw)
+			return H + 1;
+	}
+
+	return hw == nw ? H + 1 : nullptr;
+}
+
+static const char8_t *
+memrchr4(const char8_t *h, size_t k, const char8_t *n)
+{
+	uint32_t hw, nw;
+	const char8_t *H = h + k - 1;
+	hw = H[-3] << 24 | H[-2] << 16 | H[-1] << 8 | H[-0];
+	nw = n[+0] << 24 | n[+1] << 16 | n[+2] << 8 | n[+3];
+
+	for (H -= 4, k -= 4; k; k--, hw = hw >> 8 | (*H-- << 24)) {
+		if (hw == nw)
+			return H + 1;
+	}
+
+	return hw == nw ? H + 1 : nullptr;
+}
+
+const char8_t *
+u8rchr(const char8_t *s, rune ch, size_t n)
+{
+	char8_t buf[U8_LEN_MAX];
+	int m = rtou8(buf, ch, sizeof(buf));
+
+	if (n < (size_t)m)
+		return nullptr;
+	switch (m) {
+	case 1:
+		return _memrchr(s, ch, n);
+	case 2:
+		return memrchr2(s, n, buf);
+	case 3:
+		return memrchr3(s, n, buf);
+	case 4:
+		return memrchr4(s, n, buf);
+	}
+
+	unreachable();
 }

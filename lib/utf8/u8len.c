@@ -1,13 +1,13 @@
 #include "utf8.h"
 
 size_t
-u8len(const char8_t *s)
+u8len(const char8_t *s, size_t n)
 {
 	rune unused;
-	size_t n = 0;
+	size_t m = 0;
 
-	while ((s = u8next(&unused, s)))
-		n++;
+	while ((s = u8next(&unused, s, &n)))
+		m++;
 
-	return n;
+	return m;
 }
