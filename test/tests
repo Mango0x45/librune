@@ -13,7 +13,7 @@ readonly src=../data/GraphemeBreakTest.txt
 
 set -e
 cd "${0%/*}"
-cc -I../lib -o gbrk gbrk.c ../lib/utf8.o ../lib/gbrk.o
+find ../lib -name '*.c' -exec cc -I../include -o gbrk gbrk.c {} +
 trap 'rm -f gbrk' EXIT
 
 n=$(
