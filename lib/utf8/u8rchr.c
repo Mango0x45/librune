@@ -4,15 +4,12 @@
 
 #include "internal/common.h"
 
-static void *
-_memrchr(const void *s, char8_t c, size_t n)
+static const char8_t *
+memrchr1(const char8_t *s, size_t k, const char8_t *n)
 {
-	const char8_t *p = (const char8_t *)s + n - 1;
-	while (n-- > 0) {
-		if (*p == c) {
-			return (void *)p;
-		}
-		p--;
+	for (const char8_t *p = s + k - 1; k-- > 0; p--) {
+		if (*p == *n)
+			return p;
 	}
 	return nullptr;
 }
@@ -77,7 +74,7 @@ u8rchr(const char8_t *s, rune ch, size_t n)
 		return nullptr;
 	switch (m) {
 	case 1:
-		return _memrchr(s, ch, n);
+		return memrchr1(s, n, buf);
 	case 2:
 		return memrchr2(s, n, buf);
 	case 3:
