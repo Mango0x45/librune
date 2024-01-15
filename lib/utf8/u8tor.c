@@ -23,7 +23,7 @@ u8tor(rune *ch, const char8_t *s)
 		n = 4;
 	}
 
-	if (n && u8validr(*ch))
+	if (n && u8chkr(*ch))
 		return n;
 
 	*ch = RUNE_ERROR;

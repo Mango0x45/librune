@@ -30,7 +30,7 @@ u8prev(rune *ch, const char8_t *s, const char8_t *start)
 	} else
 		match = false;
 
-	if (match && u8validr(*ch))
+	if (match && u8chkr(*ch))
 		return s - off;
 
 	*ch = RUNE_ERROR;
