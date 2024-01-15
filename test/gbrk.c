@@ -56,7 +56,7 @@ test(char *raw)
 	p = buf;
 	while (sscanf(raw, "%" SCNxRUNE "%n", &ch, &n)) {
 		rune sep;
-		p += rtou8(p, ch);
+		p += rtou8(p, ch, 4096 - (p - buf));
 		raw += n;
 		raw += u8tor(&sep, (char8_t *)raw);
 		if (!sep)
@@ -64,7 +64,9 @@ test(char *raw)
 	}
 	*p = 0;
 
-	for (const char8_t *p, *s = buf; p = u8gbrk_next(s), *s; s = p) {
+	for (const char8_t *p, *s = buf; p = u8gbrk_next(s, 4096 - (s - buf)), *s;
+	     s = p)
+	{
 		while (s < p) {
 			s += u8tor(&ch, s);
 			printf("%04" PRIXRUNE, ch);
