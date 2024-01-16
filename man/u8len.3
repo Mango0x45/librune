@@ -34,7 +34,7 @@ will return 17 while the call to
 will return 22 as a result of use of multibyte-characters in
 .Fa s .
 .Bd -literal -offset indent
-char8_t s[] = u8"„Der Große Duden“";
+char8_t s[] = u8\(dq„Der Große Duden“\(dq;
 size_t blen, cplen;
 
 blen = strlen((char *)s);

@@ -35,7 +35,7 @@ will return 7 as a result of user-preceived characters such as
 .Sq е́
 taking up multiple codepoints.
 .Bd -literal -offset indent
-char8_t s[] = u8"Приве́т";
+char8_t s[] = u8\(dqПриве́т\(dq;
 size_t cplen, glen;
 
 cplen = u8len(s, sizeof(s) - 1);
