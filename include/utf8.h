@@ -29,6 +29,6 @@ const char8_t *u8prev(rune *, const char8_t *, const char8_t *);
 const char8_t *u8chr(const char8_t *, rune, size_t);
 const char8_t *u8rchr(const char8_t *, rune, size_t);
 
-const char8_t *u8set(const char8_t *, rune, size_t);
+size_t u8set(const char8_t *, rune, size_t);
 
 #endif /* !RUNE_UTF8_H */

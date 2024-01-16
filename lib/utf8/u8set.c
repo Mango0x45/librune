@@ -4,19 +4,21 @@
 
 #include "internal/common.h"
 
-const char8_t *
+size_t
 u8set(const char8_t *s, rune ch, size_t n)
 {
 	int m;
 	char8_t buf[U8_LEN_MAX];
 
-	if (ch <= _1B_MAX)
-		return memset((char *)s, ch, n);
+	if (n == 0)
+		return 0;
+	if (ch <= _1B_MAX) {
+		memset((char *)s, ch, n);
+		return n;
+	}
 	m = rtou8(buf, ch, sizeof(buf));
-	if (n % m != 0)
-		unreachable();
 	for (size_t i = 0; i < n; i += m)
 		memcpy((char *)s + i, buf, m);
 
-	return s;
+	return n - n % m;
 }
