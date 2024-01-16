@@ -3,6 +3,9 @@
 
 #if __STDC_VERSION__ < 202311L
 #	include <stdbool.h>
+#	define _RUNE_UNSEQUENCED
+#else
+#	define _RUNE_UNSEQUENCED [[unsequenced]]
 #endif
 
 #include "internal/types.h"
@@ -16,7 +19,7 @@ int u8tor_uc(rune *, const char8_t *);
 const char8_t *u8chk(const char8_t *, size_t);
 bool u8chkr(rune);
 
-int u8wdth(rune);
+_RUNE_UNSEQUENCED int u8wdth(rune);
 
 size_t u8len(const char8_t *, size_t);
 
