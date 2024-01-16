@@ -22,27 +22,34 @@ static bool u8isgbrk(rune, rune, struct gbrk_state *);
 static gbrk_prop getprop(rune);
 
 const char8_t *
-u8gnext(const char8_t *s, size_t *n)
+u8gnext(const char8_t **gstart, size_t *glen, const char8_t *s, size_t *n)
 {
 	int m;
 	rune ch1;
-	const char8_t *p = s;
+	const char8_t *p;
 	struct gbrk_state gs = {0};
 
-	for (p += u8tor(&ch1, p); (size_t)(p - s) < *n; p += m) {
+	if (*n == 0)
+		return nullptr;
+
+	*gstart = p = s;
+	p += u8tor_uc(&ch1, p);
+
+	for (;;) {
 		rune ch2;
 
-		m = u8tor(&ch2, p);
+		if ((size_t)(p - s) >= *n)
+			ch2 = 0;
+		else
+			m = u8tor_uc(&ch2, p);
 		if (u8isgbrk(ch1, ch2, &gs)) {
-			*n -= p - s;
+			*n -= *glen = p - s;
 			return p;
 		}
 
 		ch1 = ch2;
+		p += m;
 	}
-
-	*n = 0;
-	return nullptr;
 }
 
 bool
