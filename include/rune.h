@@ -5,13 +5,13 @@
 
 #include "internal/types.h"
 
-#define _RUNE_PRIDEF(c) PRI##c##FAST32
-#define _RUNE_SCNDEF(c) SCN##c##FAST32
+#define _RUNE_PRIDEF(c) PRI##c##LEAST32
+#define _RUNE_SCNDEF(c) SCN##c##LEAST32
 
-#ifdef PRIbFAST32
+#ifdef PRIbLEAST32
 #	define PRIbRUNE _RUNE_PRIDEF(b)
 #endif
-#ifdef PRIBFAST32
+#ifdef PRIBLEAST32
 #	define PRIBRUNE _RUNE_PRIDEF(B)
 #endif
 #define PRIdRUNE _RUNE_PRIDEF(d)
@@ -21,7 +21,7 @@
 #define PRIxRUNE _RUNE_PRIDEF(x)
 #define PRIXRUNE _RUNE_PRIDEF(X)
 
-#ifdef SCNbFAST32
+#ifdef SCNbLEAST32
 #	define SCNbRUNE _RUNE_SCNDEF(b)
 #endif
 #define SCNdRUNE _RUNE_SCNDEF(d)

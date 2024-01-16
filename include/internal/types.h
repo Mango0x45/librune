@@ -5,6 +5,6 @@
 #include <stdint.h>
 
 typedef unsigned char char8_t;
-typedef uint_fast32_t rune;
+typedef uint_least32_t rune;
 
 #endif /* !RUNE_INTERNAL_TYPES_H */
