@@ -31,4 +31,16 @@ const char8_t *u8rchr(const char8_t *, rune, size_t);
 
 size_t u8set(const char8_t *, rune, size_t);
 
+/* clang-format off */
+size_t   u8spn(const char8_t *, size_t, const rune *, size_t);
+size_t  u8bspn(const char8_t *, size_t, const rune *, size_t);
+size_t  u8cspn(const char8_t *, size_t, const rune *, size_t);
+size_t u8cbspn(const char8_t *, size_t, const rune *, size_t);
+
+#define   U8SPN(S, N, P)   u8spn((S), (N), (P), (sizeof(P) / sizeof(*(P))))
+#define  U8BSPN(S, N, P)  u8bspn((S), (N), (P), (sizeof(P) / sizeof(*(P))))
+#define  U8CSPN(S, N, P)  u8cspn((S), (N), (P), (sizeof(P) / sizeof(*(P))))
+#define U8CBSPN(S, N, P) u8cbspn((S), (N), (P), (sizeof(P) / sizeof(*(P))))
+/* clang-format on */
+
 #endif /* !RUNE_UTF8_H */
