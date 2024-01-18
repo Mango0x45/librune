@@ -10,11 +10,6 @@
 
 #define die(...) err(EXIT_FAILURE, __VA_ARGS__)
 
-struct grapheme {
-	const char8_t *p;
-	size_t len;
-};
-
 static void test(char *);
 
 int
@@ -73,7 +68,7 @@ test(char *raw)
 	*p = 0;
 
 	s = buf;
-	while ((s = u8gnext(&graph.p, &graph.len, s, &bufsiz)) && *graph.p) {
+	while (u8gnext(&graph, &s, &bufsiz) && *graph.p) {
 		rune ch;
 		const char8_t *p;
 
