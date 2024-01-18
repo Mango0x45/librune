@@ -1,7 +1,7 @@
 #ifndef RUNE_INTERNAL_TYPES_H
 #define RUNE_INTERNAL_TYPES_H
 
-#include <stddef.h> /* For size_t */
+#include <stddef.h> /* IWYU pragma: export */
 #include <stdint.h>
 
 typedef unsigned char char8_t;

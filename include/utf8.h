@@ -2,13 +2,13 @@
 #define RUNE_UTF8_H
 
 #if __STDC_VERSION__ < 202311L
-#	include <stdbool.h>
+#	include <stdbool.h> /* IWYU pragma: export */
 #	define _RUNE_UNSEQUENCED
 #else
 #	define _RUNE_UNSEQUENCED [[unsequenced]]
 #endif
 
-#include "internal/types.h"
+#include "internal/types.h" /* IWYU pragma: export */
 
 #define U8_LEN_MAX (4)
 

@@ -3,7 +3,7 @@
 
 #include <inttypes.h>
 
-#include "internal/types.h"
+#include "internal/types.h" /* IWYU pragma: export */
 
 #define _RUNE_PRIDEF(c) PRI##c##LEAST32
 #define _RUNE_SCNDEF(c) SCN##c##LEAST32

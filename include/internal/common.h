@@ -6,13 +6,13 @@
 #endif
 
 #if !RUNE_IS_23
-#	include <stddef.h>
+#	include <stddef.h> /* IWYU pragma: export */
 #	define nullptr NULL
 #endif
 
 #ifndef unreachable
 #	if RUNE_IS_23
-#		include <stddef.h>
+#		include <stddef.h> /* IWYU pragma: export */
 #	elif defined(__GNUC__) || defined(__clang__)
 #		define unreachable() __builtin_unreachable()
 #	else
