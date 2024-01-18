@@ -23,8 +23,8 @@ _RUNE_UNSEQUENCED int u8wdth(rune);
 
 size_t u8len(const char8_t *, size_t);
 
-const char8_t *u8next(rune *, const char8_t *, size_t *);
-const char8_t *u8prev(rune *, const char8_t *, const char8_t *);
+const char8_t *u8next(rune *, const char8_t **, size_t *);
+const char8_t *u8prev(rune *, const char8_t **, const char8_t *);
 
 const char8_t *u8chr(const char8_t *, rune, size_t);
 const char8_t *u8rchr(const char8_t *, rune, size_t);

@@ -4,10 +4,11 @@
 #include "internal/common.h"
 
 const char8_t *
-u8prev(rune *ch, const char8_t *s, const char8_t *start)
+u8prev(rune *ch, const char8_t **p, const char8_t *start)
 {
 	int off;
 	bool match = true;
+	const char8_t *s = *p;
 	ptrdiff_t d = s - start;
 
 	if (d <= 0) {
@@ -29,8 +30,8 @@ u8prev(rune *ch, const char8_t *s, const char8_t *start)
 		match = false;
 
 	if (match && u8chkr(*ch))
-		return s - off;
+		return *p -= off;
 
 	*ch = RUNE_ERROR;
-	return s - 1;
+	return *p--;
 }

@@ -77,7 +77,7 @@ test(char *raw)
 		rune ch;
 		const char8_t *p;
 
-		while ((graph.p = u8next(&ch, graph.p, &graph.len)) && ch) {
+		while (u8next(&ch, &graph.p, &graph.len) && ch) {
 			printf("%04" PRIXRUNE "%s", ch, graph.len > 0 ? "×" : "");
 			p = graph.p;
 		}
