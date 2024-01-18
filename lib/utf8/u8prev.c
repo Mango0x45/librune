@@ -19,10 +19,10 @@ u8prev(rune *ch, const char8_t **p, const char8_t *start)
 	} else if (d > 1 && UC(s[-1]) && U2(s[-2])) {
 		*ch = ((s[-2] & 0x1F) << 6) | (s[-1] & 0x3F);
 		off = 2;
-	} else if (d > 2 && UC(s[-1]) && UC(s[-2]) && U2(s[-3])) {
+	} else if (d > 2 && UC(s[-1]) && UC(s[-2]) && U3(s[-3])) {
 		*ch = ((s[-3] & 0x0F) << 12) | ((s[-2] & 0x3F) << 6) | (s[-1] & 0x3F);
 		off = 3;
-	} else if (d > 3 && UC(s[-1]) && UC(s[-2]) && UC(s[-3]) && U2(s[-4])) {
+	} else if (d > 3 && UC(s[-1]) && UC(s[-2]) && UC(s[-3]) && U4(s[-4])) {
 		*ch = ((s[-4] & 0x07) << 18) | ((s[-3] & 0x3F) << 12)
 		    | ((s[-2] & 0x3F) << 6) | (s[-1] & 0x3F);
 		off = 4;
