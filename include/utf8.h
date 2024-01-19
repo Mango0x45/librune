@@ -8,6 +8,7 @@
 #	define _RUNE_UNSEQUENCED [[unsequenced]]
 #endif
 
+#define _RUNE_NEEDS_U8VIEW 1
 #include "internal/types.h" /* IWYU pragma: export */
 
 #define U8_LEN_MAX (4)

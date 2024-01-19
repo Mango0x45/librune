@@ -22,7 +22,7 @@ static bool u8isgbrk(rune, rune, struct gbrk_state *);
 static gbrk_prop getprop(rune);
 
 const char8_t *
-u8gnext(struct grapheme *g, const char8_t **s, size_t *n)
+u8gnext(struct u8view *g, const char8_t **s, size_t *n)
 {
 	int m;
 	rune ch1;
