@@ -1,4 +1,4 @@
-# librune — easy unicode in a post-ASCII world
+# librune — easy Unicode in a post-ASCII world
 
 Librune is a C library that aims to make interacting with Unicode and
 UTF-8 easy in C.  There are no plans at the moment to support UTF-16 or
@@ -10,7 +10,7 @@ C23.
 
 ## Terminology
 
-This library uses the term ‘rune’ to refer to a single unicode-codepoint,
+This library uses the term ‘rune’ to refer to a single Unicode-codepoint,
 and defines a `rune` datatype which is an unsigned integer type which
 represents a rune (shocker).
 
