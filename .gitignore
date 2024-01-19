@@ -1,8 +1,11 @@
 .cache/
 test/gbrk
 *.o
+a.out
 compile_commands.json
 failures
 main
 main.c
 Makefile
+NOTE-TO-SELF
+test.c
