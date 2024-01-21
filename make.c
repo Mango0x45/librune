@@ -45,11 +45,8 @@ main(int argc, char **argv)
 	if (chdir(dirname(*argv)) == -1)
 		die("chdir");
 
-	if (glob("lib/utf8/*.c", 0, globerr, &g)
-	    || glob("lib/gbrk/*.c", GLOB_APPEND, globerr, &g))
-	{
+	if (glob("lib/*/*.c", 0, globerr, &g))
 		die("glob");
-	}
 
 	if ((n = nproc()) == -1) {
 		if (errno)
