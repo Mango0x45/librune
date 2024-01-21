@@ -1,7 +1,9 @@
 #include <errno.h>
 #include <glob.h>
+#include <libgen.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #define CBS_PTHREAD
 #include "cbs.h"
@@ -40,6 +42,9 @@ main(int argc, char **argv)
 	cbsinit(argc, argv);
 	rebuild();
 
+	if (chdir(dirname(*argv)) == -1)
+		die("chdir");
+
 	if (glob("lib/utf8/*.c", 0, globerr, &g)
 	    || glob("lib/gbrk/*.c", GLOB_APPEND, globerr, &g))
 	{
@@ -73,12 +78,15 @@ work(void *p)
 {
 	cmd_t c = {0};
 	char *dst, *src = p;
+	struct strv sv = {0};
 
 	if (!(dst = strdup(src)))
 		die("strdup");
 	dst[strlen(dst) - 1] = 'o';
 
-	cmdadd(&c, CC, CFLAGS, "-o", dst, "-c", src);
+	env_or_default(&sv, "CC", CC);
+	cmdaddv(&c, sv.buf, sv.len);
+	cmdadd(&c, CFLAGS, "-o", dst, "-c", src);
 	cmdprc(c);
 
 	free(dst);
