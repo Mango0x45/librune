@@ -21,17 +21,21 @@ size_t
 nextpow2(size_t x)
 {
 #if defined(__has_builtin) && __has_builtin(__builtin_clzl)
-	return x == 1 ? 1 : 1 << (64 - __builtin_clzl(x - 1));
+	x = x <= 1 ? 1 : 1 << (64 - __builtin_clzl(x - 1));
 #else
-	x--;
-	x |= x >> 1;
-	x |= x >> 2;
-	x |= x >> 4;
-	x |= x >> 8;
-	if (sizeof(size_t) >= 4)
-		x |= x >> 16;
-	if (sizeof(size_t) >= 8)
-		x |= x >> 32;
+	if (x) {
+		x--;
+		x |= x >> 1;
+		x |= x >> 2;
+		x |= x >> 4;
+		x |= x >> 8;
+		if (sizeof(size_t) >= 4)
+			x |= x >> 16;
+		if (sizeof(size_t) >= 8)
+			x |= x >> 32;
+	}
 	x++;
 #endif
+
+	return x;
 }
