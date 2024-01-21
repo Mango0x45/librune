@@ -1,6 +1,8 @@
 #ifndef RUNE_INTERNAL_TYPES_H
 #define RUNE_INTERNAL_TYPES_H
 
+/* IWYU pragma: private */
+
 #include <stddef.h> /* IWYU pragma: export */
 #include <stdint.h>
 
