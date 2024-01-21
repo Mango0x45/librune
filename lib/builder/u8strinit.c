@@ -5,7 +5,7 @@
 #include "internal/common.h"
 
 struct u8buf *
-u8buf_init(struct u8buf *b, size_t n)
+u8strinit(struct u8buf *b, size_t n)
 {
 	if (n && !(b->p = malloc(n)))
 		return nullptr;

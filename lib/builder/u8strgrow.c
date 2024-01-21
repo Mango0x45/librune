@@ -7,7 +7,7 @@
 static size_t nextpow2(size_t);
 
 struct u8buf *
-u8buf_grow(struct u8buf *b, size_t n)
+u8strgrow(struct u8buf *b, size_t n)
 {
 	if (n > b->cap) {
 		b->cap = nextpow2(n);
