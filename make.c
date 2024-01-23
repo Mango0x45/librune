@@ -38,9 +38,6 @@ main(int argc, char **argv)
 	cbsinit(argc, argv);
 	rebuild();
 
-	if (chdir(dirname(*argv)) == -1)
-		die("chdir");
-
 	if (argc > 1) {
 		if (streq(argv[1], "clean")) {
 			cmd_t c = {0};
