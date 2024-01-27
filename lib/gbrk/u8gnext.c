@@ -1,4 +1,4 @@
-#include <sys/types.h>
+#include <stddef.h>
 
 #include "gbrk.h"
 #include "utf8.h"
@@ -146,13 +146,13 @@ do_break:
 gbrk_prop
 getprop(rune ch)
 {
-	ssize_t lo, hi;
+	ptrdiff_t lo, hi;
 
 	lo = 0;
 	hi = lengthof(gbrk_prop_tbl) - 1;
 
 	while (lo <= hi) {
-		ssize_t i = (lo + hi) / 2;
+		ptrdiff_t i = (lo + hi) / 2;
 
 		if (ch < gbrk_prop_tbl[i].lo)
 			hi = i - 1;
