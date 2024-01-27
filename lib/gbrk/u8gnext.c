@@ -6,8 +6,6 @@
 #include "internal/common.h"
 #include "internal/gbrk_lookup.h"
 
-#define lengthof(a) (sizeof(a) / sizeof(*(a)))
-
 struct gbrk_state {
 	enum {
 		GB9C_NONE,

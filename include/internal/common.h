@@ -3,6 +3,8 @@
 
 /* IWYU pragma: private */
 
+#define lengthof(a) (sizeof(a) / sizeof(*(a)))
+
 #define U1(x) (((x)&0x80) == 0x00)
 #define U2(x) (((x)&0xE0) == 0xC0)
 #define U3(x) (((x)&0xF0) == 0xE0)
