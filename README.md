@@ -25,6 +25,32 @@ This library contains the following headers:
 - `utf8.h` — UTF-8 encoding, decoding, iteration, etc.
 
 
+## Compilation
+
+This library comes with a build script in the form of `make.c`.  To build
+the library all you need is a C compiler.  The build script will build a
+static library called ‘librune.a’.
+
+```sh
+# Make sure to link with pthread
+cc -lpthread -o make make.c
+./make
+```
+
+If you want to build the library in release-mode (optimizations enabled),
+simply pass the `-r` flag to the build script:
+
+```sh
+./make -r
+```
+
+You can also pass the `-l` flag to enable link-time optimizations:
+
+```sh
+./make -lr
+```
+
+
 ## Installation
 
 There is no ‘intended’ way in which this library should be installed,
