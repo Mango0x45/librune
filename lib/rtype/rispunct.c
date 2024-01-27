@@ -1,6 +1,6 @@
 #include "rtype.h"
 
- bool
+bool
 rispunct(rune ch)
 {
 	return runeis(ch, UC_P);
