@@ -33,7 +33,7 @@
 static void work(void *);
 static int globerr(const char *, int);
 
-static bool rflag;
+static bool lflag, rflag;
 
 int
 main(int argc, char **argv)
@@ -43,13 +43,16 @@ main(int argc, char **argv)
 	cbsinit(argc, argv);
 	rebuild();
 
-	while ((opt = getopt(argc, argv, "r")) != -1) {
+	while ((opt = getopt(argc, argv, "lr")) != -1) {
 		switch (opt) {
+		case 'l':
+			lflag = true;
+			break;
 		case 'r':
 			rflag = true;
 			break;
 		default:
-			fprintf(stderr, "Usage: %s [-r]\n", *argv);
+			fprintf(stderr, "Usage: %s [-lr]\n", *argv);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -120,6 +123,8 @@ work(void *p)
 		else
 			env_or_default(&sv, "CFLAGS", CFLAGS_DBG);
 		cmdaddv(&c, sv.buf, sv.len);
+		if (lflag)
+			cmdadd(&c, "-flto");
 		cmdadd(&c, "-Iinclude", "-fPIC", "-o", dst, "-c", src);
 		cmdprc(c);
 	}
