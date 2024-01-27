@@ -1,13 +1,6 @@
 #ifndef RUNE_UTF8_H
 #define RUNE_UTF8_H
 
-#if __STDC_VERSION__ < 202311L
-#	include <stdbool.h> /* IWYU pragma: export */
-#	define _RUNE_UNSEQUENCED
-#else
-#	define _RUNE_UNSEQUENCED [[unsequenced]]
-#endif
-
 #include "internal/qmacros.h"
 #define _RUNE_NEEDS_U8VIEW 1
 #include "internal/types.h" /* IWYU pragma: export */
@@ -21,9 +14,9 @@ int rtou8(char8_t *, rune, size_t);
 size_t u8set(char8_t *, rune, size_t);
 
 char8_t *u8chk(const char8_t *, size_t);
-_RUNE_UNSEQUENCED bool u8chkr(rune);
+[[unsequenced]] bool u8chkr(rune);
 
-_RUNE_UNSEQUENCED int u8wdth(rune);
+[[unsequenced]] int u8wdth(rune);
 
 size_t u8len(const char8_t *, size_t);
 

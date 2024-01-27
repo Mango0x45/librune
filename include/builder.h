@@ -18,14 +18,12 @@ struct u8str *u8strpushr(struct u8str *, rune);
 struct u8str *u8strpushstr(struct u8str *, const char *);
 struct u8str *u8strpushu8(struct u8str *, struct u8view);
 
-#if __STDC_VERSION__ >= 201112L
-#	define u8strpush(b, x) \
-		_Generic((x), \
-		    char: u8strpushr, \
-		    int: u8strpushr, \
-		    rune: u8strpushr, \
-		    char *: u8strpushstr, \
-		    struct u8view: u8strpushu8)((b), (x))
-#endif
+#define u8strpush(b, x) \
+	_Generic((x), \
+	    char: u8strpushr, \
+	    int: u8strpushr, \
+	    rune: u8strpushr, \
+	    char *: u8strpushstr, \
+	    struct u8view: u8strpushu8)((b), (x))
 
 #endif /* !RUNE_BUILDER_H */

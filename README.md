@@ -4,8 +4,7 @@ Librune is a C library that aims to make interacting with Unicode and
 UTF-8 easy in C.  There are no plans at the moment to support UTF-16 or
 -32, but they may be supported if such a usecase ever comes up.
 
-This library has been tested to build and work properly on both C99 and
-C23.
+This library requires C23.
 
 
 ## Terminology

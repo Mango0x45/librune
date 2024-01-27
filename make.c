@@ -10,8 +10,9 @@
 #include "cbs.h"
 
 #define CC         "cc"
-#define CFLAGS_ALL "-Wall", "-Wextra", "-Wpedantic", "-Werror", "-pipe"
-#define CFLAGS_DBG "-g", "-ggdb3", "-Og"
+#define WARNINGS   "-Wall", "-Wextra", "-Wpedantic", "-Werror", "-Wno-attributes"
+#define CFLAGS_ALL WARNINGS, "-pipe", "-std=c2x"
+#define CFLAGS_DBG CFLAGS_ALL, "-g", "-ggdb3", "-Og"
 #ifdef __APPLE__
 #	define CFLAGS_RLS CFLAGS_ALL, "-O3"
 #else
