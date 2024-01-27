@@ -18,4 +18,6 @@
 #define _3B_MAX RUNE_C(0x00FFFF)
 #define _4B_MAX RUNE_C(0x10FFFF)
 
+#define LATIN1_MAX 0xFF
+
 #endif /* !RUNE_INTERNAL_COMMON_H */

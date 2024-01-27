@@ -18,10 +18,11 @@ represents a rune (shocker).
 
 This library contains the following headers:
 
-1. `gbrk.h` — grapheme-iteration functions
-2. `rune.h` — rune-constants, -macros, and -functions
-3. `utf8.h` — UTF-8 encoding, decoding, iteration, etc.
-4. `builder.h` — string building functions
+- `builder.h` — string building functions
+- `gbrk.h` — grapheme-iteration functions
+- `rtype.h` — rune categorization à la `ctype.h`
+- `rune.h` — rune-constants, -macros, and -functions
+- `utf8.h` — UTF-8 encoding, decoding, iteration, etc.
 
 
 ## Installation
