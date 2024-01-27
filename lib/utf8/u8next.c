@@ -3,13 +3,16 @@
 
 #include "internal/common.h"
 
-char8_t *
+int
 u8next(rune *ch, const char8_t **s, size_t *n)
 {
-	int m;
+	int m = 0;
 
-	if (*n == 0)
-		return nullptr;
-	*n -= m = u8tor_uc(ch, *s);
-	return (char8_t *)(*s += m);
+	if (*n) {
+		m = u8tor_uc(ch, *s);
+		*n -= m;
+		*s += m;
+	}
+
+	return m;
 }

@@ -27,8 +27,8 @@ _RUNE_UNSEQUENCED int u8wdth(rune);
 
 size_t u8len(const char8_t *, size_t);
 
-char8_t *u8next(rune *, const char8_t **, size_t *);
-char8_t *u8prev(rune *, const char8_t **, const char8_t *);
+int u8next(rune *, const char8_t **, size_t *);
+int u8prev(rune *, const char8_t **, const char8_t *);
 
 char8_t *u8chr(const char8_t *, rune, size_t);
 char8_t *u8rchr(const char8_t *, rune, size_t);
@@ -40,8 +40,6 @@ size_t u8cbspn(const char8_t *, size_t, const rune *, size_t);
 
 #if _RUNE_MACRO_WRAP
 #	define u8chk(s, n)      _RUNE_Q_PTR(u8chk, (s), (s), (n))
-#	define u8next(ch, s, n) _RUNE_Q_PTR(u8next, (s), (ch), (s), (n))
-#	define u8prev(ch, p, s) _RUNE_Q_PTR(u8prev, (p), (ch), (p), (s))
 #	define u8chr(s, ch, n)  _RUNE_Q_PTR(u8chr, (s), (s), (ch), (n))
 #	define u8rchr(s, ch, n) _RUNE_Q_PTR(u8rchr, (s), (s), (ch), (n))
 #endif

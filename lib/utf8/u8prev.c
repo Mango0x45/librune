@@ -4,7 +4,7 @@
 
 #include "internal/common.h"
 
-char8_t *
+int
 u8prev(rune *ch, const char8_t **p, const char8_t *start)
 {
 	int off;
@@ -13,7 +13,7 @@ u8prev(rune *ch, const char8_t **p, const char8_t *start)
 	ptrdiff_t d = s - start;
 
 	if (d <= 0) {
-		return nullptr;
+		return 0;
 	} else if (U1(s[-1])) {
 		*ch = s[-1];
 		off = 1;
@@ -30,9 +30,11 @@ u8prev(rune *ch, const char8_t **p, const char8_t *start)
 	} else
 		match = false;
 
-	if (match && u8chkr(*ch))
-		return (char8_t *)(*p -= off);
+	if (!(match && u8chkr(*ch))) {
+		*ch = RUNE_ERROR;
+		off = 1;
+	}
 
-	*ch = RUNE_ERROR;
-	return (char8_t *)*p--;
+	*p -= off;
+	return off;
 }
