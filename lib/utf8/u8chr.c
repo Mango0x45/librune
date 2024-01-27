@@ -1,10 +1,9 @@
+#include <stddef.h>
 #include <stdint.h>
 #include <string.h>
 
 #define _RUNE_NO_MACRO_WRAPPER 1
 #include "utf8.h"
-
-#include "internal/common.h"
 
 /* NOTE: The memmem*() functions were taken directly from the memmem()
    implementation on OpenBSD.  As a result, these functions are licensed under

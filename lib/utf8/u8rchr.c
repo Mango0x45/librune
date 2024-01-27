@@ -1,9 +1,8 @@
+#include <stddef.h>
 #include <stdint.h>
 
 #define _RUNE_NO_MACRO_WRAPPER 1
 #include "utf8.h"
-
-#include "internal/common.h"
 
 static char8_t *
 memrchr1(const char8_t *s, size_t k, const char8_t *n)
