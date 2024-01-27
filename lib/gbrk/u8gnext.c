@@ -44,7 +44,7 @@ u8gnext(struct u8view *g, const char8_t **s, size_t *n)
 			m = u8tor_uc(&ch2, p);
 		if (u8isgbrk(ch1, ch2, &gs)) {
 			*n -= g->len = p - *s;
-			return *s = p;
+			return (char8_t *)(*s = p);
 		}
 
 		ch1 = ch2;

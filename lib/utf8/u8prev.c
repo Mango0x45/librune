@@ -1,9 +1,10 @@
+#define _RUNE_NO_MACRO_WRAPPER 1
 #include "rune.h"
 #include "utf8.h"
 
 #include "internal/common.h"
 
-const char8_t *
+char8_t *
 u8prev(rune *ch, const char8_t **p, const char8_t *start)
 {
 	int off;
@@ -30,8 +31,8 @@ u8prev(rune *ch, const char8_t **p, const char8_t *start)
 		match = false;
 
 	if (match && u8chkr(*ch))
-		return *p -= off;
+		return (char8_t *)(*p -= off);
 
 	*ch = RUNE_ERROR;
-	return *p--;
+	return (char8_t *)*p--;
 }
