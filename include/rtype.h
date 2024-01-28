@@ -49,7 +49,10 @@ typedef enum [[clang::flag_enum]] : uint_fast32_t {
 	     | UC_PO | UC_PS,
 } unicat;
 
-[[unsequenced]] bool runeis(rune, unicat);
+[[unsequenced]] bool runeisc(rune, unicat);
+[[unsequenced]] bool runeisp(rune, uniprop);
+#define runeis(ch, bm) \
+	_Generic((bm), unicat: runeisc, uniprop: runeisp)((ch), (bm))
 
 [[unsequenced]] bool riscntrl(rune);
 [[unsequenced]] bool risdigit(rune);

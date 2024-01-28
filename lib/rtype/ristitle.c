@@ -3,5 +3,5 @@
 bool
 ristitle(rune ch)
 {
-	return runeis(ch, UC_LT);
+	return runeisc(ch, UC_LT);
 }

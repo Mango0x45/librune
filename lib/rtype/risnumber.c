@@ -3,5 +3,5 @@
 bool
 risnumber(rune ch)
 {
-	return runeis(ch, UC_N);
+	return runeisc(ch, UC_N);
 }

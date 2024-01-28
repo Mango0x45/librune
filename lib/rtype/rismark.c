@@ -3,5 +3,5 @@
 bool
 rismark(rune ch)
 {
-	return runeis(ch, UC_M);
+	return runeisc(ch, UC_M);
 }

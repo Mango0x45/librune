@@ -3,5 +3,5 @@
 bool
 risupper(rune ch)
 {
-	return runeis(ch, UC_LU);
+	return runeisc(ch, UC_LU);
 }

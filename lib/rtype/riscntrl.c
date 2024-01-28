@@ -3,5 +3,5 @@
 bool
 riscntrl(rune ch)
 {
-	return runeis(ch, UC_CC);
+	return runeisc(ch, UC_CC);
 }

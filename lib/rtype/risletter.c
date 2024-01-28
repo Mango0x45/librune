@@ -3,5 +3,5 @@
 bool
 risletter(rune ch)
 {
-	return runeis(ch, UC_L);
+	return runeisc(ch, UC_L);
 }

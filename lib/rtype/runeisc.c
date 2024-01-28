@@ -5,13 +5,13 @@
 #include "internal/common.h"
 #include "internal/rtype_lookup.h"
 
-bool
-runeis(rune ch, unicat c)
+[[gnu::always_inline]] static unicat
+getcat(rune ch)
 {
 	ptrdiff_t lo, hi;
 
 	if (ch <= LATIN1_MAX)
-		return rtype_lat1_tbl[ch] & c;
+		return rtype_lat1_tbl[ch];
 
 	lo = 0;
 	hi = lengthof(rtype_cat_tbl) - 1;
@@ -24,8 +24,14 @@ runeis(rune ch, unicat c)
 		else if (ch > rtype_cat_tbl[i].hi)
 			lo = i + 1;
 		else
-			return c & rtype_cat_tbl[i].cat;
+			return rtype_cat_tbl[i].cat;
 	}
 
-	return false;
+	return UC_CN;
+}
+
+bool
+runeisc(rune ch, unicat c)
+{
+	return getcat(ch) & c;
 }
