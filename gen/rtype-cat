@@ -29,7 +29,7 @@ cat <<C
 #include "../types.h"
 #include "../../rtype.h"
 
-static const unicat rtype_lat1_tbl[] = {
+static const enum unicat rtype_cat_lat1_tbl[] = {
 C
 
 gawk '
@@ -62,7 +62,7 @@ cat <<C
 
 static const struct {
 	rune lo, hi;
-	unicat cat;
+	enum unicat val;
 } rtype_cat_tbl[] = {
 C
 
@@ -86,7 +86,7 @@ BEGIN {
 }
 
 END {
-	for (i = 0; i <= 0x10FFFF; i++) {
+	for (i = 0x100; i <= 0x10FFFF; i++) {
 		if (!props[i])
 			continue
 		lo = i

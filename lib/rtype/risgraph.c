@@ -3,5 +3,5 @@
 bool
 risgraph(rune ch)
 {
-	return runeisc(ch, UC_L | UC_M | UC_N | UC_P | UC_ZS);
+	return runeis(ch, UC_L | UC_M | UC_N | UC_P | UC_ZS);
 }

@@ -3,5 +3,5 @@
 bool
 rispunct(rune ch)
 {
-	return runeisc(ch, UC_P);
+	return runeis(ch, UC_P);
 }

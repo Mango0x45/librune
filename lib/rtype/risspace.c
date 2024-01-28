@@ -12,5 +12,5 @@ risspace(rune ch)
 {
 	if (ch <= LATIN1_MAX)
 		return latin1_space_tbl[ch];
-	return runeisc(ch, UC_Z);
+	return runeis(ch, UC_Z);
 }

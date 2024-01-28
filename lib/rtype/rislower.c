@@ -3,5 +3,5 @@
 bool
 rislower(rune ch)
 {
-	return runeisc(ch, UC_LL);
+	return runeis(ch, UC_LL);
 }
