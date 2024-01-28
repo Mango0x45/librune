@@ -3,7 +3,7 @@
 #include "rtype.h"
 
 #include "internal/common.h"
-#include "internal/rtype_lookup.h"
+#include "internal/rtype/cat.h"
 
 [[gnu::always_inline]] static unicat
 getcat(rune ch)
