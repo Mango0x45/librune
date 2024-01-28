@@ -23,14 +23,17 @@ END {
 		if (xs[i])
 			mask = or(mask, lshift(1, i))
 	}
-	print  "#if BIT_LOOKUP"
-	printf "static const unsigned _BitInt(LATIN1_MAX + 1) mask = 0x%Xuwb;\n", \
-		mask
-	print  "#endif"
-	print  ""
-	print  "static const struct {"
-	print  "\trune lo, hi;"
-	print  "} lookup_tbl[] = {"
+	if (mask > 0) {
+		print  "#if BIT_LOOKUP"
+		printf "static const unsigned _BitInt(LATIN1_MAX + 1) mask = 0x%Xuwb;\n", \
+			mask
+		print  "#endif"
+		print  ""
+	}
+
+	print "static const struct {"
+	print "\trune lo, hi;"
+	print "} lookup_tbl[] = {"
 
 	for (i = 0; i <= 0x10FFFF; i++) {
 		if (!xs[i])
@@ -52,10 +55,13 @@ END {
 	print  "bool"
 	printf "rune_has_prop_%s(rune ch)\n", tolower(prop)
 	print  "{"
-	print  "\treturn"
-	print  "#if BIT_LOOKUP"
-	print  "\t\tch <= LATIN1_MAX ? (mask & ch) :"
-	print  "#endif"
-	print  "\t\tlookup(ch);"
+	if (mask > 0) {
+		print "\treturn"
+		print "#if BIT_LOOKUP"
+		print "\t\tch <= LATIN1_MAX ? (mask & ch) :"
+		print "#endif"
+		print "\t\tlookup(ch);"
+	} else
+		print "\treturn lookup(ch);"
 	print  "}"
 }

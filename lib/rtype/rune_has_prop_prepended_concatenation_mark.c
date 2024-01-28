@@ -4,10 +4,6 @@
 
 #include "internal/common.h"
 
-#if BIT_LOOKUP
-static const unsigned _BitInt(LATIN1_MAX + 1) mask = 0x0uwb;
-#endif
-
 static const struct {
 	rune lo, hi;
 } lookup_tbl[] = {
@@ -29,9 +25,5 @@ static const struct {
 bool
 rune_has_prop_prepended_concatenation_mark(rune ch)
 {
-	return
-#if BIT_LOOKUP
-		ch <= LATIN1_MAX ? (mask & ch) :
-#endif
-		lookup(ch);
+	return lookup(ch);
 }
