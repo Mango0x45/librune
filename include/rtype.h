@@ -63,4 +63,54 @@ enum [[clang::flag_enum]] unicat : uint_fast32_t {
 [[unsequenced]] bool ristitle(rune);
 [[unsequenced]] bool risupper(rune);
 
-#endif /* !RUNE_RTYPE_H */
+/* PROP PREDICATES START */
+[[unsequenced]] bool rune_has_prop_alphabetic(rune);
+[[unsequenced]] bool rune_has_prop_ascii_hex_digit(rune);
+[[unsequenced]] bool rune_has_prop_bidi_control(rune);
+[[unsequenced]] bool rune_has_prop_case_ignorable(rune);
+[[unsequenced]] bool rune_has_prop_cased(rune);
+[[unsequenced]] bool rune_has_prop_changes_when_casefolded(rune);
+[[unsequenced]] bool rune_has_prop_changes_when_casemapped(rune);
+[[unsequenced]] bool rune_has_prop_changes_when_lowercased(rune);
+[[unsequenced]] bool rune_has_prop_changes_when_titlecased(rune);
+[[unsequenced]] bool rune_has_prop_changes_when_uppercased(rune);
+[[unsequenced]] bool rune_has_prop_dash(rune);
+[[unsequenced]] bool rune_has_prop_default_ignorable_code_point(rune);
+[[unsequenced]] bool rune_has_prop_deprecated(rune);
+[[unsequenced]] bool rune_has_prop_diacritic(rune);
+[[unsequenced]] bool rune_has_prop_extender(rune);
+[[unsequenced]] bool rune_has_prop_grapheme_base(rune);
+[[unsequenced]] bool rune_has_prop_grapheme_extend(rune);
+[[unsequenced]] bool rune_has_prop_hex_digit(rune);
+[[unsequenced]] bool rune_has_prop_id_compat_math_continue(rune);
+[[unsequenced]] bool rune_has_prop_id_compat_math_start(rune);
+[[unsequenced]] bool rune_has_prop_id_continue(rune);
+[[unsequenced]] bool rune_has_prop_id_start(rune);
+[[unsequenced]] bool rune_has_prop_ideographic(rune);
+[[unsequenced]] bool rune_has_prop_ids_binary_operator(rune);
+[[unsequenced]] bool rune_has_prop_ids_trinary_operator(rune);
+[[unsequenced]] bool rune_has_prop_ids_unary_operator(rune);
+[[unsequenced]] bool rune_has_prop_indic_conjunct_break(rune);
+[[unsequenced]] bool rune_has_prop_join_control(rune);
+[[unsequenced]] bool rune_has_prop_logical_order_exception(rune);
+[[unsequenced]] bool rune_has_prop_lowercase(rune);
+[[unsequenced]] bool rune_has_prop_math(rune);
+[[unsequenced]] bool rune_has_prop_noncharacter_code_point(rune);
+[[unsequenced]] bool rune_has_prop_pattern_syntax(rune);
+[[unsequenced]] bool rune_has_prop_pattern_white_space(rune);
+[[unsequenced]] bool rune_has_prop_prepended_concatenation_mark(rune);
+[[unsequenced]] bool rune_has_prop_quotation_mark(rune);
+[[unsequenced]] bool rune_has_prop_radical(rune);
+[[unsequenced]] bool rune_has_prop_regional_indicator(rune);
+[[unsequenced]] bool rune_has_prop_sentence_terminal(rune);
+[[unsequenced]] bool rune_has_prop_soft_dotted(rune);
+[[unsequenced]] bool rune_has_prop_terminal_punctuation(rune);
+[[unsequenced]] bool rune_has_prop_unified_ideograph(rune);
+[[unsequenced]] bool rune_has_prop_uppercase(rune);
+[[unsequenced]] bool rune_has_prop_variation_selector(rune);
+[[unsequenced]] bool rune_has_prop_white_space(rune);
+[[unsequenced]] bool rune_has_prop_xid_continue(rune);
+[[unsequenced]] bool rune_has_prop_xid_start(rune);
+/* PROP PREDICATES END */
+
+#endif

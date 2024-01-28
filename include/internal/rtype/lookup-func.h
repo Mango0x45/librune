@@ -11,8 +11,8 @@
 #ifndef TABLE
 #	error "TABLE is not defined"
 #endif
-#ifndef LATIN1_TABLE
-#	error "LATIN1_TABLE is not defined"
+#ifndef HAS_VALUE
+#	error "HAS_VALUE is not defined"
 #endif
 
 [[gnu::always_inline]] static TYPE
@@ -20,8 +20,10 @@ lookup(rune ch)
 {
 	ptrdiff_t lo, hi;
 
+#ifdef LATIN1_TABLE
 	if (ch <= LATIN1_MAX)
 		return LATIN1_TABLE[ch];
+#endif
 
 	lo = 0;
 	hi = lengthof(TABLE) - 1;
@@ -34,7 +36,11 @@ lookup(rune ch)
 		else if (ch > TABLE[i].hi)
 			lo = i + 1;
 		else
+#if HAS_VALUE
 			return TABLE[i].val;
+#else
+			return true;
+#endif
 	}
 
 	return DEFAULT;

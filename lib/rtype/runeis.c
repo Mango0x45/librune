@@ -2,10 +2,11 @@
 
 #include "internal/rtype/cat.h"
 
-#define TYPE         enum unicat
 #define DEFAULT      UC_CN
-#define TABLE        rtype_cat_tbl
+#define HAS_VALUE    1
 #define LATIN1_TABLE rtype_cat_lat1_tbl
+#define TABLE        rtype_cat_tbl
+#define TYPE         enum unicat
 #include "internal/rtype/lookup-func.h"
 
 bool
