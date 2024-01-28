@@ -37,6 +37,8 @@ typedef enum [[clang::flag_enum]] : uint_fast32_t {
 	UC_ZP = UINT32_C(1) << 27, /* Paragraph Separator */
 	UC_ZS = UINT32_C(1) << 28, /* Space Separator */
 
+	UC_LC = UC_LU | UC_LL | UC_LT, /* Cased Letter */
+
 	UC_C = UC_CC | UC_CF | UC_CN | UC_CO | UC_CS, /* Other */
 	UC_L = UC_LL | UC_LM | UC_LO | UC_LT | UC_LU, /* Letter */
 	UC_M = UC_MC | UC_ME | UC_MN,                 /* Mark */
