@@ -18,6 +18,12 @@ struct u8str *u8strpushr(struct u8str *, rune);
 struct u8str *u8strpushstr(struct u8str *, const char *);
 struct u8str *u8strpushu8(struct u8str *, struct u8view);
 
+[[gnu::always_inline]] static inline struct u8view
+u8strtou8(struct u8str s)
+{
+	return *(struct u8view *)&s;
+}
+
 #define u8strpush(b, x) \
 	_Generic((x), \
 	    char: u8strpushr, \
