@@ -55,7 +55,9 @@ END {
 	for (i = 0; i <= 0xFF; i++)
 		print props[i] ","
 }
-' /tmp/librune/rtype/* | paste -d' ' - - - - - - - - | sed 's/^/\t/'
+' /tmp/librune/rtype/UnicodeData.txt \
+| paste -d' ' - - - - - - - - \
+| sed 's/^/\t/'
 
 cat <<C
 };
@@ -95,7 +97,7 @@ END {
 		printf "\t{0x%06X, 0x%06X, %s},\n", lo, i, props[lo]
 	}
 }
-' /tmp/librune/rtype/* | sort
+' /tmp/librune/rtype/UnicodeData.txt | sort
 
 cat <<C
 };
