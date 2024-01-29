@@ -31,7 +31,7 @@ size_t u8bspn(const char8_t *, size_t, const rune *, size_t);
 size_t u8cspn(const char8_t *, size_t, const rune *, size_t);
 size_t u8cbspn(const char8_t *, size_t, const rune *, size_t);
 
-#if _RUNE_MACRO_WRAP
+#if !_RUNE_NO_MACRO_WRAPPER
 #	define u8chk(s, n)      _RUNE_Q_PTR(u8chk, (s), (s), (n))
 #	define u8chr(s, ch, n)  _RUNE_Q_PTR(u8chr, (s), (s), (ch), (n))
 #	define u8rchr(s, ch, n) _RUNE_Q_PTR(u8rchr, (s), (s), (ch), (n))

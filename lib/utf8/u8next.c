@@ -1,4 +1,3 @@
-#define _RUNE_NO_MACRO_WRAPPER 1
 #include "utf8.h"
 
 int
