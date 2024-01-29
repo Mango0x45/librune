@@ -17,7 +17,12 @@ struct gbrk_state {
 };
 
 static bool u8isgbrk(rune, rune, struct gbrk_state *);
-static gbrk_prop getprop(rune);
+
+#define DEFAULT   GBP_OTHER
+#define HAS_VALUE 1
+#define TABLE     gbrk_prop_tbl
+#define TYPE      gbrk_prop
+#include "internal/rtype/lookup-func.h"
 
 size_t
 u8gnext(struct u8view *g, const char8_t **s, size_t *n)
@@ -68,11 +73,11 @@ u8isgbrk(rune a, rune b, struct gbrk_state *gs)
 	}
 
 	/* GB4 */
-	if (a == '\r' || a == '\n' || ((ap = getprop(a)) & GBP_CTRL))
+	if (a == '\r' || a == '\n' || ((ap = lookup(a)) & GBP_CTRL))
 		goto do_break;
 
 	/* GB5 */
-	if (b == '\r' || b == '\n' || ((bp = getprop(b)) & GBP_CTRL))
+	if (b == '\r' || b == '\n' || ((bp = lookup(b)) & GBP_CTRL))
 		goto do_break;
 
 	/* Setting flags for GB9c */
@@ -139,26 +144,4 @@ do_break:
 	gs->gb9c = GB9C_NONE;
 	gs->gb11 = gs->gb12 = false;
 	return true;
-}
-
-gbrk_prop
-getprop(rune ch)
-{
-	ptrdiff_t lo, hi;
-
-	lo = 0;
-	hi = lengthof(gbrk_prop_tbl) - 1;
-
-	while (lo <= hi) {
-		ptrdiff_t i = (lo + hi) / 2;
-
-		if (ch < gbrk_prop_tbl[i].lo)
-			hi = i - 1;
-		else if (ch > gbrk_prop_tbl[i].hi)
-			lo = i + 1;
-		else
-			return gbrk_prop_tbl[i].prop;
-	}
-
-	return GBP_OTHER;
 }

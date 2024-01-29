@@ -32,7 +32,7 @@ typedef enum {
 
 static const struct {
 	rune lo, hi;
-	gbrk_prop prop;
+	gbrk_prop val;
 } gbrk_prop_tbl[] = {
 	{0x000000, 0x000009, GBP_CTRL},
 	{0x00000B, 0x00000C, GBP_CTRL},
