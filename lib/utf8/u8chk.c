@@ -14,6 +14,7 @@ u8chk(const char8_t *s, size_t n)
 		if (ch == RUNE_ERROR)
 			return (char8_t *)s;
 		n -= m;
+		s += m;
 	}
 
 	return nullptr;
