@@ -21,7 +21,7 @@ struct u8str *u8strpushu8(struct u8str *, struct u8view);
 [[gnu::always_inline]] static inline struct u8view
 u8strtou8(struct u8str s)
 {
-	return *(struct u8view *)&s;
+	return (struct u8view){s.p, s.len};
 }
 
 #define u8strpush(b, x) \
