@@ -18,6 +18,7 @@ char8_t *u8chk(const char8_t *, size_t);
 
 [[unsequenced]] int u8wdth(rune);
 
+int u8rlen(const char8_t *);
 size_t u8len(const char8_t *, size_t);
 
 int u8next(rune *, const char8_t **, size_t *);
