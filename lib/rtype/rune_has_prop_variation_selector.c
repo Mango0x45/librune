@@ -4,6 +4,8 @@
 
 #include "internal/common.h"
 
+/* clang-format off */
+
 static const struct {
 	rune lo, hi;
 } lookup_tbl[] = {

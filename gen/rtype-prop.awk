@@ -7,6 +7,8 @@ BEGIN {
 	print ""
 	print "#include \"internal/common.h\""
 	print ""
+	print "/* clang-format off */"
+	print ""
 }
 
 $2 == prop || (prop == "Indic_Conjunct_Break" && $2 ~ /InCB;/) {
@@ -25,8 +27,8 @@ END {
 	}
 	if (mask > 0) {
 		print  "#if BIT_LOOKUP"
-		printf "static const unsigned _BitInt(LATIN1_MAX + 1) mask = 0x%Xuwb;\n", \
-			mask
+		print  "static const unsigned _BitInt(LATIN1_MAX + 1) mask = \\"
+		printf "\t0x%064Xuwb;\n", mask
 		print  "#endif"
 		print  ""
 	}

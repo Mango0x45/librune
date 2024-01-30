@@ -4,8 +4,11 @@
 
 #include "internal/common.h"
 
+/* clang-format off */
+
 #if BIT_LOOKUP
-static const unsigned _BitInt(LATIN1_MAX + 1) mask = 0xFF7FFFFFFF7FFFFF04A004000000000007FFFFFE87FFFFFE03FF000000000000uwb;
+static const unsigned _BitInt(LATIN1_MAX + 1) mask = \
+	0xFF7FFFFFFF7FFFFF04A004000000000007FFFFFE87FFFFFE03FF000000000000uwb;
 #endif
 
 static const struct {
