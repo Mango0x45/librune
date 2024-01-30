@@ -1,5 +1,5 @@
 #include "rune.h"
-#include "utf8.h"
+#include "mbstring.h"
 
 #include "internal/common.h"
 

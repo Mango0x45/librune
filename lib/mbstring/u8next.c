@@ -1,4 +1,4 @@
-#include "utf8.h"
+#include "mbstring.h"
 
 int
 u8next(rune *ch, const char8_t **s, size_t *n)

@@ -1,7 +1,7 @@
 #include <stddef.h>
 
 #include "gbrk.h"
-#include "utf8.h"
+#include "mbstring.h"
 
 #include "internal/common.h"
 #include "internal/gbrk_lookup.h"

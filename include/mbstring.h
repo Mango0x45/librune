@@ -1,5 +1,5 @@
-#ifndef RUNE_UTF8_H
-#define RUNE_UTF8_H
+#ifndef RUNE_MBSTRING_H
+#define RUNE_MBSTRING_H
 
 #include "internal/qmacros.h"
 #define _RUNE_NEEDS_U8VIEW 1
@@ -38,4 +38,4 @@ size_t u8cbspn(const char8_t *, size_t, const rune *, size_t);
 #	define u8rchr(s, ch, n) _RUNE_Q_PTR(u8rchr, (s), (s), (ch), (n))
 #endif
 
-#endif /* !RUNE_UTF8_H */
+#endif /* !RUNE_MBSTRING_H */

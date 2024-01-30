@@ -20,9 +20,9 @@ This library contains the following headers:
 
 - `builder.h` — string building functions
 - `gbrk.h` — grapheme-iteration functions
+- `mbstring.h` — multibyte-string encoding, decoding, iteration, etc.
 - `rtype.h` — rune categorization à la `ctype.h`
 - `rune.h` — rune-constants, -macros, and -functions
-- `utf8.h` — UTF-8 encoding, decoding, iteration, etc.
 
 
 ## Compilation
