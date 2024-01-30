@@ -1,5 +1,5 @@
-#include "rune.h"
 #include "mbstring.h"
+#include "rune.h"
 
 bool
 u8chkr(rune ch)
