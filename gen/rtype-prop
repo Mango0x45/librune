@@ -35,7 +35,6 @@ IDS_Trinary_Operator
 IDS_Unary_Operator
 Join_Control
 Logical_Order_Exception
-Noncharacter_Code_Point
 Pattern_Syntax
 Pattern_White_Space
 Prepended_Concatenation_Mark
@@ -70,6 +69,10 @@ Math
 Uppercase
 XID_Continue
 XID_Start
+'
+
+manual='
+Noncharacter_Code_Point
 '
 
 {
@@ -113,3 +116,9 @@ XID_Start
 	}
 ' - include/rtype.h \
 | sponge include/rtype.h
+
+for prop in $manual
+do
+	lprop=$(echo $prop | tr A-Z a-z)
+	printf 'Function rune_has_prop_%s() implemented manually\n' $lprop >&2
+done
