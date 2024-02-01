@@ -20,7 +20,6 @@ cache "$URL2" &
 wait
 
 props1='
-ASCII_Hex_Digit
 Bidi_Control
 Dash
 Deprecated
@@ -31,12 +30,8 @@ ID_Compat_Math_Continue
 ID_Compat_Math_Start
 Ideographic
 IDS_Binary_Operator
-IDS_Trinary_Operator
-IDS_Unary_Operator
-Join_Control
 Logical_Order_Exception
 Pattern_Syntax
-Pattern_White_Space
 Prepended_Concatenation_Mark
 Quotation_Mark
 Radical
@@ -72,7 +67,12 @@ XID_Start
 '
 
 manual='
+ASCII_Hex_Digit
+IDS_Trinary_Operator
+IDS_Unary_Operator
+Join_Control
 Noncharacter_Code_Point
+Pattern_White_Space
 '
 
 gen()
