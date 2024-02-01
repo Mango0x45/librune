@@ -85,6 +85,7 @@ enum [[clang::flag_enum]] joining_type {
 /* PROP PREDICATES START */
 [[unsequenced]] bool rprop_is_alphabetic(rune);
 [[unsequenced]] bool rprop_is_bidi_control(rune);
+[[unsequenced]] bool rprop_is_bidi_mirrored(rune);
 [[unsequenced]] bool rprop_is_case_ignorable(rune);
 [[unsequenced]] bool rprop_is_cased(rune);
 [[unsequenced]] bool rprop_is_changes_when_casefolded(rune);

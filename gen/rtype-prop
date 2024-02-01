@@ -16,11 +16,13 @@ readonly URL1='https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt'
 readonly URL2='https://www.unicode.org/Public/UCD/latest/ucd/DerivedCoreProperties.txt'
 readonly URL3='https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-data.txt'
 readonly URL4='https://www.unicode.org/Public/UCD/latest/ucd/DerivedNormalizationProps.txt'
+readonly URL5='https://www.unicode.org/Public/UCD/latest/ucd/extracted/DerivedBinaryProperties.txt'
 
 cache "$URL1" &
 cache "$URL2" &
 cache "$URL3" &
 cache "$URL4" &
+cache "$URL5" &
 wait
 
 props1='
@@ -83,6 +85,10 @@ props4='
 Changes_When_NFKC_Casefolded
 '
 
+props5='
+Bidi_Mirrored
+'
+
 manual='
 is_ASCII_Hex_Digit
 is_IDS_Trinary_Operator
@@ -120,8 +126,13 @@ do
 	gen $prop is DerivedNormalizationProps.txt &
 done
 
+for prop in $props5
+do
+	gen $prop is DerivedBinaryProperties.txt &
+done
+
 printf '[[unsequenced]] bool rprop_is_%s(rune);\n' \
-	$(echo $props1 $props2 $props3 $props4 | tr A-Z a-z) \
+	$(echo $props1 $props2 $props3 $props4 $props5 | tr A-Z a-z) \
 | gawk '
 	/PROP PREDICATES END/ { no = 0 }
 	FILENAME != "-" && !no { print }
