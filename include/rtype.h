@@ -79,6 +79,7 @@ enum [[clang::flag_enum]] unicat : uint_fast32_t {
 [[unsequenced]] bool rprop_changes_when_casefolded(rune);
 [[unsequenced]] bool rprop_changes_when_casemapped(rune);
 [[unsequenced]] bool rprop_changes_when_lowercased(rune);
+[[unsequenced]] bool rprop_changes_when_nfkc_casefolded(rune);
 [[unsequenced]] bool rprop_changes_when_titlecased(rune);
 [[unsequenced]] bool rprop_changes_when_uppercased(rune);
 [[unsequenced]] bool rprop_dash(rune);

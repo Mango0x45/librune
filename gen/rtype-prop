@@ -15,10 +15,12 @@ cd "${0%/*}/.."
 readonly URL1='https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt'
 readonly URL2='https://www.unicode.org/Public/UCD/latest/ucd/DerivedCoreProperties.txt'
 readonly URL3='https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-data.txt'
+readonly URL4='https://www.unicode.org/Public/UCD/latest/ucd/DerivedNormalizationProps.txt'
 
 cache "$URL1" &
 cache "$URL2" &
 cache "$URL3" &
+cache "$URL4" &
 wait
 
 props1='
@@ -77,6 +79,10 @@ Emoji_Presentation
 Extended_Pictographic
 '
 
+props4='
+Changes_When_NFKC_Casefolded
+'
+
 manual='
 ASCII_Hex_Digit
 IDS_Trinary_Operator
@@ -109,8 +115,13 @@ do
 	gen $prop emoji-data.txt &
 done
 
+for prop in $props4
+do
+	gen $prop DerivedNormalizationProps.txt &
+done
+
 printf '[[unsequenced]] bool rprop_%s(rune);\n' \
-	$(echo $props1 $props2 $props3 | tr A-Z a-z) \
+	$(echo $props1 $props2 $props3 $props4 | tr A-Z a-z) \
 | gawk '
 	/PROP PREDICATES END/ { no = 0 }
 	FILENAME != "-" && !no { print }
