@@ -29,7 +29,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_hex_digit(rune ch)
+rprop_hex_digit(rune ch)
 {
 	return
 #if BIT_LOOKUP

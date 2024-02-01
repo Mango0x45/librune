@@ -645,7 +645,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_changes_when_casefolded(rune ch)
+rprop_changes_when_casefolded(rune ch)
 {
 	return
 #if BIT_LOOKUP

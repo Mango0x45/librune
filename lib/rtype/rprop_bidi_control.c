@@ -22,7 +22,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_bidi_control(rune ch)
+rprop_bidi_control(rune ch)
 {
 	return lookup(ch);
 }

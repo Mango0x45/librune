@@ -33,7 +33,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_white_space(rune ch)
+rprop_white_space(rune ch)
 {
 	return
 #if BIT_LOOKUP

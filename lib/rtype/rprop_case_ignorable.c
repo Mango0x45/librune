@@ -460,7 +460,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_case_ignorable(rune ch)
+rprop_case_ignorable(rune ch)
 {
 	return
 #if BIT_LOOKUP

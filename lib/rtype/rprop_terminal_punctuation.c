@@ -131,7 +131,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_terminal_punctuation(rune ch)
+rprop_terminal_punctuation(rune ch)
 {
 	return
 #if BIT_LOOKUP

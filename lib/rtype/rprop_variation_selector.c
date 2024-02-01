@@ -22,7 +22,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_variation_selector(rune ch)
+rprop_variation_selector(rune ch)
 {
 	return lookup(ch);
 }

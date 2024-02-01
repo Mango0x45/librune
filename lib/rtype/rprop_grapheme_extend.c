@@ -381,7 +381,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_grapheme_extend(rune ch)
+rprop_grapheme_extend(rune ch)
 {
 	return lookup(ch);
 }

@@ -51,7 +51,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_pattern_syntax(rune ch)
+rprop_pattern_syntax(rune ch)
 {
 	return
 #if BIT_LOOKUP

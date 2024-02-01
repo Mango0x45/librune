@@ -218,7 +218,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_indic_conjunct_break(rune ch)
+rprop_indic_conjunct_break(rune ch)
 {
 	return lookup(ch);
 }

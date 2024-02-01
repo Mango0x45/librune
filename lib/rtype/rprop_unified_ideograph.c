@@ -35,7 +35,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_unified_ideograph(rune ch)
+rprop_unified_ideograph(rune ch)
 {
 	return lookup(ch);
 }

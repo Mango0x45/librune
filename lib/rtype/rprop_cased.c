@@ -180,7 +180,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_cased(rune ch)
+rprop_cased(rune ch)
 {
 	return
 #if BIT_LOOKUP

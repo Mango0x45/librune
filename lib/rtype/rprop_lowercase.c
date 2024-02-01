@@ -694,7 +694,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_lowercase(rune ch)
+rprop_lowercase(rune ch)
 {
 	return
 #if BIT_LOOKUP

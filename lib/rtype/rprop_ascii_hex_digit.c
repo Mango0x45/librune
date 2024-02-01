@@ -11,7 +11,7 @@ static const bool lookup[] = {
 };
 
 bool
-rune_has_prop_ascii_hex_digit(rune ch)
+rprop_ascii_hex_digit(rune ch)
 {
 	return ch <= lengthof(lookup) ? lookup[ch] : false;
 }

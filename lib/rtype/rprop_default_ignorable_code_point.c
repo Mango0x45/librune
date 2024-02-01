@@ -40,7 +40,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_default_ignorable_code_point(rune ch)
+rprop_default_ignorable_code_point(rune ch)
 {
 	return
 #if BIT_LOOKUP

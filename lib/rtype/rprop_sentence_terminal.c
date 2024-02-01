@@ -104,7 +104,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_sentence_terminal(rune ch)
+rprop_sentence_terminal(rune ch)
 {
 	return
 #if BIT_LOOKUP

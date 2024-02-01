@@ -690,7 +690,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_xid_start(rune ch)
+rprop_xid_start(rune ch)
 {
 	return
 #if BIT_LOOKUP

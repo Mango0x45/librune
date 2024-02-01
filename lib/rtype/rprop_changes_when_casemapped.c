@@ -154,7 +154,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_changes_when_casemapped(rune ch)
+rprop_changes_when_casemapped(rune ch)
 {
 	return
 #if BIT_LOOKUP

@@ -25,7 +25,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_logical_order_exception(rune ch)
+rprop_logical_order_exception(rune ch)
 {
 	return lookup(ch);
 }

@@ -26,7 +26,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_deprecated(rune ch)
+rprop_deprecated(rune ch)
 {
 	return lookup(ch);
 }

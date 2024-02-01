@@ -21,7 +21,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_radical(rune ch)
+rprop_radical(rune ch)
 {
 	return lookup(ch);
 }

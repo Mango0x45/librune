@@ -2,7 +2,7 @@
 #include "rune.h"
 
 bool
-rune_has_prop_noncharacter_code_point(rune ch)
+rprop_noncharacter_code_point(rune ch)
 {
 	return (ch >= 0xFDD0 && ch <= 0xFDEF)
 	    || ((ch & 0xFFFE) == 0xFFFE

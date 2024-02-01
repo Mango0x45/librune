@@ -46,7 +46,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_dash(rune ch)
+rprop_dash(rune ch)
 {
 	return
 #if BIT_LOOKUP

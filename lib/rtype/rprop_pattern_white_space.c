@@ -14,7 +14,7 @@ static const rune patws[] = {
 static_assert(lengthof(patws) == 11, "Unroll pragma needs updating");
 
 bool
-rune_has_prop_pattern_white_space(rune ch)
+rprop_pattern_white_space(rune ch)
 {
 #pragma GCC unroll 11
 	for (size_t i = 0; i < lengthof(patws); i++) {

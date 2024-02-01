@@ -21,7 +21,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_ids_binary_operator(rune ch)
+rprop_ids_binary_operator(rune ch)
 {
 	return lookup(ch);
 }

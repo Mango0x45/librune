@@ -898,7 +898,7 @@ static const struct {
 #include "internal/rtype/lookup-func.h"
 
 bool
-rune_has_prop_grapheme_base(rune ch)
+rprop_grapheme_base(rune ch)
 {
 	return
 #if BIT_LOOKUP
