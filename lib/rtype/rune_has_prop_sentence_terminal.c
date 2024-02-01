@@ -7,7 +7,7 @@
 /* clang-format off */
 
 #if BIT_LOOKUP
-static const unsigned _BitInt(LATIN1_MAX + 1) mask = \
+static const unsigned _BitInt(LATIN1_MAX + 1) mask =
 	0x0000000000000000000000000000000000000000000000008000400200000000uwb;
 #endif
 

@@ -27,7 +27,7 @@ END {
 	}
 	if (mask > 0) {
 		print  "#if BIT_LOOKUP"
-		print  "static const unsigned _BitInt(LATIN1_MAX + 1) mask = \\"
+		print  "static const unsigned _BitInt(LATIN1_MAX + 1) mask ="
 		printf "\t0x%064Xuwb;\n", mask
 		print  "#endif"
 		print  ""
