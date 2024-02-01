@@ -85,6 +85,12 @@ enum [[clang::flag_enum]] unicat : uint_fast32_t {
 [[unsequenced]] bool rprop_default_ignorable_code_point(rune);
 [[unsequenced]] bool rprop_deprecated(rune);
 [[unsequenced]] bool rprop_diacritic(rune);
+[[unsequenced]] bool rprop_emoji(rune);
+[[unsequenced]] bool rprop_emoji_component(rune);
+[[unsequenced]] bool rprop_emoji_modifier(rune);
+[[unsequenced]] bool rprop_emoji_modifier_base(rune);
+[[unsequenced]] bool rprop_emoji_presentation(rune);
+[[unsequenced]] bool rprop_extended_pictographic(rune);
 [[unsequenced]] bool rprop_extender(rune);
 [[unsequenced]] bool rprop_grapheme_base(rune);
 [[unsequenced]] bool rprop_grapheme_extend(rune);
