@@ -21,9 +21,11 @@ $2 == prop || (prop == "Indic_Conjunct_Break" && $2 ~ /InCB;/) {
 }
 
 END {
-	for (i = 0; i <= 0xFF; i++) {
-		if (xs[i])
-			mask = or(mask, lshift(1, i))
+	if (word == "is") {
+		for (i = 0; i <= 0xFF; i++) {
+			if (xs[i])
+				mask = or(mask, lshift(1, i))
+		}
 	}
 	if (mask > 0) {
 		print  "#if BIT_LOOKUP"
@@ -55,7 +57,7 @@ END {
 	print  "#include \"internal/rtype/lookup-func.h\""
 	print  ""
 	print  "bool"
-	printf "rprop_%s(rune ch)\n", tolower(prop)
+	printf "rprop_%s_%s(rune ch)\n", word, tolower(prop)
 	print  "{"
 	if (mask > 0) {
 		print "\treturn"

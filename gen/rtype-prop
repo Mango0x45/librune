@@ -84,43 +84,43 @@ Changes_When_NFKC_Casefolded
 '
 
 manual='
-ASCII_Hex_Digit
-IDS_Trinary_Operator
-IDS_Unary_Operator
-Join_Control
-Noncharacter_Code_Point
-Pattern_White_Space
+is_ASCII_Hex_Digit
+is_IDS_Trinary_Operator
+is_IDS_Unary_Operator
+is_Join_Control
+is_Noncharacter_Code_Point
+is_Pattern_White_Space
 '
 
 gen()
 {
 	local l=$(echo $1 | tr A-Z a-z)
-	gawk -M -v prop=$1 -f gen/rtype-prop.awk /tmp/librune/rtype/$2 \
-		>lib/rtype/rprop_$l.c
-	printf 'DONE rprop_%s()\n' $l >&2
+	gawk -M -v prop=$1 -v word=$2 -f gen/rtype-prop.awk /tmp/librune/rtype/$3 \
+		>lib/rtype/rprop_${2}_${l}.c
+	printf 'DONE rprop_%s_%s()\n' $2 $l >&2
 }
 
 for prop in $props1
 do
-	gen $prop PropList.txt &
+	gen $prop is PropList.txt &
 done
 
 for prop in $props2
 do
-	gen $prop DerivedCoreProperties.txt &
+	gen $prop is DerivedCoreProperties.txt &
 done
 
 for prop in $props3
 do
-	gen $prop emoji-data.txt &
+	gen $prop is emoji-data.txt &
 done
 
 for prop in $props4
 do
-	gen $prop DerivedNormalizationProps.txt &
+	gen $prop is DerivedNormalizationProps.txt &
 done
 
-printf '[[unsequenced]] bool rprop_%s(rune);\n' \
+printf '[[unsequenced]] bool rprop_is_%s(rune);\n' \
 	$(echo $props1 $props2 $props3 $props4 | tr A-Z a-z) \
 | gawk '
 	/PROP PREDICATES END/ { no = 0 }
