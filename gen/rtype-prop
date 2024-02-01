@@ -71,7 +71,6 @@ Uppercase
 XID_Continue
 XID_Start
 '
-# InCB
 
 {
 	for prop in $props1
