@@ -75,35 +75,27 @@ manual='
 Noncharacter_Code_Point
 '
 
+gen()
 {
-	for prop in $props1
-	do
-		lprop=$(echo $prop | tr A-Z a-z)
+	local l=$(echo $1 | tr A-Z a-z)
+	gawk -M -v prop=$1 -f gen/rtype-prop.awk /tmp/librune/rtype/$2 \
+		>lib/rtype/rprop_$l.c
+	printf 'DONE rprop_%s()\n' $l >&2
+}
 
-		printf 'rprop_%s…' $lprop >&2
+for prop in $props1
+do
+	gen $prop PropList.txt &
+done
 
-		gawk -M -v prop=$prop -f gen/rtype-prop.awk \
-			/tmp/librune/rtype/PropList.txt \
-			>lib/rtype/rprop_$lprop.c
+for prop in $props2
+do
+	gen $prop DerivedCoreProperties.txt &
+done
 
-		echo "[[unsequenced]] bool rprop_$lprop(rune);"
-		echo ' DONE' >&2
-	done
-
-	for prop in $props2
-	do
-		lprop=$(echo $prop | tr A-Z a-z)
-
-		printf 'rprop_%s…' $lprop >&2
-
-		gawk -M -v prop=$prop -f gen/rtype-prop.awk \
-			/tmp/librune/rtype/DerivedCoreProperties.txt \
-			>lib/rtype/rprop_$lprop.c
-
-		echo "[[unsequenced]] bool rprop_$lprop(rune);"
-		echo ' DONE' >&2
-	done
-} | gawk '
+printf '[[unsequenced]] bool rprop_%s(rune);\n' \
+	$(echo $props1 $props2 | tr A-Z a-z) \
+| gawk '
 	/PROP PREDICATES END/ { no = 0 }
 	FILENAME != "-" && !no { print }
 	FILENAME == "-" { funcs[++i] = $0 }
@@ -114,9 +106,9 @@ Noncharacter_Code_Point
 		for (i = 1; i <= length(funcs); i++)
 			print funcs[i]
 	}
-' - include/rtype.h \
-| sponge include/rtype.h
+' - include/rtype.h | sponge include/rtype.h
 
+wait
 for prop in $manual
 do
 	lprop=$(echo $prop | tr A-Z a-z)
