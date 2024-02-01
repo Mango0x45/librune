@@ -9,7 +9,7 @@
 #include "../types.h"
 #include "../../rtype.h"
 
-static const enum general_category rtype_gc_lat1_tbl[] = {
+static const enum general_category_bf rtype_gc_lat1_tbl[] = {
 	GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC,
 	GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC,
 	GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC,
@@ -46,7 +46,7 @@ static const enum general_category rtype_gc_lat1_tbl[] = {
 
 static const struct {
 	rune lo, hi;
-	enum general_category val;
+	enum general_category_bf val;
 } rtype_gc_tbl[] = {
 	{0x000100, 0x000100, GC_LU},
 	{0x000101, 0x000101, GC_LL},
