@@ -80,13 +80,13 @@ Noncharacter_Code_Point
 	do
 		lprop=$(echo $prop | tr A-Z a-z)
 
-		printf 'rune_has_prop_%s…' $lprop >&2
+		printf 'rprop_%s…' $lprop >&2
 
 		gawk -M -v prop=$prop -f gen/rtype-prop.awk \
 			/tmp/librune/rtype/PropList.txt \
-			>lib/rtype/rune_has_prop_$lprop.c
+			>lib/rtype/rprop_$lprop.c
 
-		echo "[[unsequenced]] bool rune_has_prop_$lprop(rune);"
+		echo "[[unsequenced]] bool rprop_$lprop(rune);"
 		echo ' DONE' >&2
 	done
 
@@ -94,13 +94,13 @@ Noncharacter_Code_Point
 	do
 		lprop=$(echo $prop | tr A-Z a-z)
 
-		printf 'rune_has_prop_%s…' $lprop >&2
+		printf 'rprop_%s…' $lprop >&2
 
 		gawk -M -v prop=$prop -f gen/rtype-prop.awk \
 			/tmp/librune/rtype/DerivedCoreProperties.txt \
-			>lib/rtype/rune_has_prop_$lprop.c
+			>lib/rtype/rprop_$lprop.c
 
-		echo "[[unsequenced]] bool rune_has_prop_$lprop(rune);"
+		echo "[[unsequenced]] bool rprop_$lprop(rune);"
 		echo ' DONE' >&2
 	done
 } | gawk '
@@ -120,5 +120,5 @@ Noncharacter_Code_Point
 for prop in $manual
 do
 	lprop=$(echo $prop | tr A-Z a-z)
-	printf 'Function rune_has_prop_%s() implemented manually\n' $lprop >&2
+	printf 'Function rprop_%s() implemented manually\n' $lprop >&2
 done
