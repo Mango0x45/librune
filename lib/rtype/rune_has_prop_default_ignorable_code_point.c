@@ -44,7 +44,7 @@ rune_has_prop_default_ignorable_code_point(rune ch)
 {
 	return
 #if BIT_LOOKUP
-		ch <= LATIN1_MAX ? (mask & ch) :
+		ch <= LATIN1_MAX ? (mask & (1 << ch)) :
 #endif
 		lookup(ch);
 }

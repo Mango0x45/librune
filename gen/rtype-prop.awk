@@ -60,7 +60,7 @@ END {
 	if (mask > 0) {
 		print "\treturn"
 		print "#if BIT_LOOKUP"
-		print "\t\tch <= LATIN1_MAX ? (mask & ch) :"
+		print "\t\tch <= LATIN1_MAX ? (mask & (1 << ch)) :"
 		print "#endif"
 		print "\t\tlookup(ch);"
 	} else

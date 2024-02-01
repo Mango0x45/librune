@@ -678,7 +678,7 @@ rune_has_prop_uppercase(rune ch)
 {
 	return
 #if BIT_LOOKUP
-		ch <= LATIN1_MAX ? (mask & ch) :
+		ch <= LATIN1_MAX ? (mask & (1 << ch)) :
 #endif
 		lookup(ch);
 }
