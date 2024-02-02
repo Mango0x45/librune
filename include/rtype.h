@@ -65,113 +65,122 @@ enum [[clang::flag_enum]] numeric_type_bf {
 	NT_NUMERIC = 1 << 2,
 };
 
-enum joining_group {
-	JG_NONE,
-	JG_AFRICAN_FEH,
-	JG_AFRICAN_NOON,
-	JG_AFRICAN_QAF,
-	JG_AIN,
-	JG_ALAPH,
-	JG_ALEF,
-	JG_BEH,
-	JG_BETH,
-	JG_BURUSHASKI_YEH_BARREE,
-	JG_DAL,
-	JG_DALATH_RISH,
-	JG_E,
-	JG_FARSI_YEH,
-	JG_FE,
-	JG_FEH,
-	JG_FINAL_SEMKATH,
-	JG_GAF,
-	JG_GAMAL,
-	JG_HAH,
-	JG_HANIFI_ROHINGYA_KINNA_YA,
-	JG_HANIFI_ROHINGYA_PA,
-	JG_HE,
-	JG_HEH,
-	JG_HEH_GOAL,
-	JG_HETH,
-	JG_KAF,
-	JG_KAPH,
-	JG_KHAPH,
-	JG_KNOTTED_HEH,
-	JG_LAM,
-	JG_LAMADH,
-	JG_MALAYALAM_BHA,
-	JG_MALAYALAM_JA,
-	JG_MALAYALAM_LLA,
-	JG_MALAYALAM_LLLA,
-	JG_MALAYALAM_NGA,
-	JG_MALAYALAM_NNA,
-	JG_MALAYALAM_NNNA,
-	JG_MALAYALAM_NYA,
-	JG_MALAYALAM_RA,
-	JG_MALAYALAM_SSA,
-	JG_MALAYALAM_TTA,
-	JG_MANICHAEAN_ALEPH,
-	JG_MANICHAEAN_AYIN,
-	JG_MANICHAEAN_BETH,
-	JG_MANICHAEAN_DALETH,
-	JG_MANICHAEAN_DHAMEDH,
-	JG_MANICHAEAN_FIVE,
-	JG_MANICHAEAN_GIMEL,
-	JG_MANICHAEAN_HETH,
-	JG_MANICHAEAN_HUNDRED,
-	JG_MANICHAEAN_KAPH,
-	JG_MANICHAEAN_LAMEDH,
-	JG_MANICHAEAN_MEM,
-	JG_MANICHAEAN_NUN,
-	JG_MANICHAEAN_ONE,
-	JG_MANICHAEAN_PE,
-	JG_MANICHAEAN_QOPH,
-	JG_MANICHAEAN_RESH,
-	JG_MANICHAEAN_SADHE,
-	JG_MANICHAEAN_SAMEKH,
-	JG_MANICHAEAN_TAW,
-	JG_MANICHAEAN_TEN,
-	JG_MANICHAEAN_TETH,
-	JG_MANICHAEAN_THAMEDH,
-	JG_MANICHAEAN_TWENTY,
-	JG_MANICHAEAN_WAW,
-	JG_MANICHAEAN_YODH,
-	JG_MANICHAEAN_ZAYIN,
-	JG_MEEM,
-	JG_MIM,
-	JG_NOON,
-	JG_NUN,
-	JG_NYA,
-	JG_PE,
-	JG_QAF,
-	JG_QAPH,
-	JG_REH,
-	JG_REVERSED_PE,
-	JG_ROHINGYA_YEH,
-	JG_SAD,
-	JG_SADHE,
-	JG_SEEN,
-	JG_SEMKATH,
-	JG_SHIN,
-	JG_STRAIGHT_WAW,
-	JG_SWASH_KAF,
-	JG_SYRIAC_WAW,
-	JG_TAH,
-	JG_TAW,
-	JG_TEH_MARBUTA,
-	JG_TEH_MARBUTA_GOAL,
-	JG_TETH,
-	JG_THIN_YEH,
-	JG_VERTICAL_TAIL,
-	JG_WAW,
-	JG_YEH,
-	JG_YEH_BARREE,
-	JG_YEH_WITH_TAIL,
-	JG_YUDH,
-	JG_YUDH_HE,
-	JG_ZAIN,
-	JG_ZHAIN,
 };
 /* clang-format on */
+
+/* GCC at the time of writing doesn’t properly support _BitInt */
+#ifdef __SIZEOF_INT128__
+typedef unsigned __int128 joining_group_bf;
+#elif BITINT_MAXWIDTH >= 128
+typedef unsigned _BitInt(128) joining_group_bf;
+#else
+#	error "_BitInt types of width >=128 not supported"
+#endif
+
+#define JG_NONE                     ((joining_group_bf)0)
+#define JG_AFRICAN_FEH              ((joining_group_bf)1 << 0)
+#define JG_AFRICAN_NOON             ((joining_group_bf)1 << 1)
+#define JG_AFRICAN_QAF              ((joining_group_bf)1 << 2)
+#define JG_AIN                      ((joining_group_bf)1 << 3)
+#define JG_ALAPH                    ((joining_group_bf)1 << 4)
+#define JG_ALEF                     ((joining_group_bf)1 << 5)
+#define JG_BEH                      ((joining_group_bf)1 << 6)
+#define JG_BETH                     ((joining_group_bf)1 << 7)
+#define JG_BURUSHASKI_YEH_BARREE    ((joining_group_bf)1 << 8)
+#define JG_DAL                      ((joining_group_bf)1 << 9)
+#define JG_DALATH_RISH              ((joining_group_bf)1 << 10)
+#define JG_E                        ((joining_group_bf)1 << 11)
+#define JG_FARSI_YEH                ((joining_group_bf)1 << 12)
+#define JG_FE                       ((joining_group_bf)1 << 13)
+#define JG_FEH                      ((joining_group_bf)1 << 14)
+#define JG_FINAL_SEMKATH            ((joining_group_bf)1 << 15)
+#define JG_GAF                      ((joining_group_bf)1 << 16)
+#define JG_GAMAL                    ((joining_group_bf)1 << 17)
+#define JG_HAH                      ((joining_group_bf)1 << 18)
+#define JG_HANIFI_ROHINGYA_KINNA_YA ((joining_group_bf)1 << 19)
+#define JG_HANIFI_ROHINGYA_PA       ((joining_group_bf)1 << 20)
+#define JG_HE                       ((joining_group_bf)1 << 21)
+#define JG_HEH                      ((joining_group_bf)1 << 22)
+#define JG_HEH_GOAL                 ((joining_group_bf)1 << 23)
+#define JG_HETH                     ((joining_group_bf)1 << 24)
+#define JG_KAF                      ((joining_group_bf)1 << 25)
+#define JG_KAPH                     ((joining_group_bf)1 << 26)
+#define JG_KHAPH                    ((joining_group_bf)1 << 27)
+#define JG_KNOTTED_HEH              ((joining_group_bf)1 << 28)
+#define JG_LAM                      ((joining_group_bf)1 << 29)
+#define JG_LAMADH                   ((joining_group_bf)1 << 30)
+#define JG_MALAYALAM_BHA            ((joining_group_bf)1 << 31)
+#define JG_MALAYALAM_JA             ((joining_group_bf)1 << 32)
+#define JG_MALAYALAM_LLA            ((joining_group_bf)1 << 33)
+#define JG_MALAYALAM_LLLA           ((joining_group_bf)1 << 34)
+#define JG_MALAYALAM_NGA            ((joining_group_bf)1 << 35)
+#define JG_MALAYALAM_NNA            ((joining_group_bf)1 << 36)
+#define JG_MALAYALAM_NNNA           ((joining_group_bf)1 << 37)
+#define JG_MALAYALAM_NYA            ((joining_group_bf)1 << 38)
+#define JG_MALAYALAM_RA             ((joining_group_bf)1 << 39)
+#define JG_MALAYALAM_SSA            ((joining_group_bf)1 << 40)
+#define JG_MALAYALAM_TTA            ((joining_group_bf)1 << 41)
+#define JG_MANICHAEAN_ALEPH         ((joining_group_bf)1 << 42)
+#define JG_MANICHAEAN_AYIN          ((joining_group_bf)1 << 43)
+#define JG_MANICHAEAN_BETH          ((joining_group_bf)1 << 44)
+#define JG_MANICHAEAN_DALETH        ((joining_group_bf)1 << 45)
+#define JG_MANICHAEAN_DHAMEDH       ((joining_group_bf)1 << 46)
+#define JG_MANICHAEAN_FIVE          ((joining_group_bf)1 << 47)
+#define JG_MANICHAEAN_GIMEL         ((joining_group_bf)1 << 48)
+#define JG_MANICHAEAN_HETH          ((joining_group_bf)1 << 49)
+#define JG_MANICHAEAN_HUNDRED       ((joining_group_bf)1 << 50)
+#define JG_MANICHAEAN_KAPH          ((joining_group_bf)1 << 51)
+#define JG_MANICHAEAN_LAMEDH        ((joining_group_bf)1 << 52)
+#define JG_MANICHAEAN_MEM           ((joining_group_bf)1 << 53)
+#define JG_MANICHAEAN_NUN           ((joining_group_bf)1 << 54)
+#define JG_MANICHAEAN_ONE           ((joining_group_bf)1 << 55)
+#define JG_MANICHAEAN_PE            ((joining_group_bf)1 << 56)
+#define JG_MANICHAEAN_QOPH          ((joining_group_bf)1 << 57)
+#define JG_MANICHAEAN_RESH          ((joining_group_bf)1 << 58)
+#define JG_MANICHAEAN_SADHE         ((joining_group_bf)1 << 59)
+#define JG_MANICHAEAN_SAMEKH        ((joining_group_bf)1 << 60)
+#define JG_MANICHAEAN_TAW           ((joining_group_bf)1 << 61)
+#define JG_MANICHAEAN_TEN           ((joining_group_bf)1 << 62)
+#define JG_MANICHAEAN_TETH          ((joining_group_bf)1 << 63)
+#define JG_MANICHAEAN_THAMEDH       ((joining_group_bf)1 << 64)
+#define JG_MANICHAEAN_TWENTY        ((joining_group_bf)1 << 65)
+#define JG_MANICHAEAN_WAW           ((joining_group_bf)1 << 66)
+#define JG_MANICHAEAN_YODH          ((joining_group_bf)1 << 67)
+#define JG_MANICHAEAN_ZAYIN         ((joining_group_bf)1 << 68)
+#define JG_MEEM                     ((joining_group_bf)1 << 69)
+#define JG_MIM                      ((joining_group_bf)1 << 70)
+#define JG_NOON                     ((joining_group_bf)1 << 71)
+#define JG_NUN                      ((joining_group_bf)1 << 72)
+#define JG_NYA                      ((joining_group_bf)1 << 73)
+#define JG_PE                       ((joining_group_bf)1 << 74)
+#define JG_QAF                      ((joining_group_bf)1 << 75)
+#define JG_QAPH                     ((joining_group_bf)1 << 76)
+#define JG_REH                      ((joining_group_bf)1 << 77)
+#define JG_REVERSED_PE              ((joining_group_bf)1 << 78)
+#define JG_ROHINGYA_YEH             ((joining_group_bf)1 << 79)
+#define JG_SAD                      ((joining_group_bf)1 << 80)
+#define JG_SADHE                    ((joining_group_bf)1 << 81)
+#define JG_SEEN                     ((joining_group_bf)1 << 82)
+#define JG_SEMKATH                  ((joining_group_bf)1 << 83)
+#define JG_SHIN                     ((joining_group_bf)1 << 84)
+#define JG_STRAIGHT_WAW             ((joining_group_bf)1 << 85)
+#define JG_SWASH_KAF                ((joining_group_bf)1 << 86)
+#define JG_SYRIAC_WAW               ((joining_group_bf)1 << 87)
+#define JG_TAH                      ((joining_group_bf)1 << 88)
+#define JG_TAW                      ((joining_group_bf)1 << 89)
+#define JG_TEH_MARBUTA              ((joining_group_bf)1 << 90)
+#define JG_TEH_MARBUTA_GOAL         ((joining_group_bf)1 << 91)
+#define JG_TETH                     ((joining_group_bf)1 << 92)
+#define JG_THIN_YEH                 ((joining_group_bf)1 << 93)
+#define JG_VERTICAL_TAIL            ((joining_group_bf)1 << 94)
+#define JG_WAW                      ((joining_group_bf)1 << 95)
+#define JG_YEH                      ((joining_group_bf)1 << 96)
+#define JG_YEH_BARREE               ((joining_group_bf)1 << 97)
+#define JG_YEH_WITH_TAIL            ((joining_group_bf)1 << 98)
+#define JG_YUDH                     ((joining_group_bf)1 << 99)
+#define JG_YUDH_HE                  ((joining_group_bf)1 << 100)
+#define JG_ZAIN                     ((joining_group_bf)1 << 101)
+#define JG_ZHAIN                    ((joining_group_bf)1 << 102)
 
 [[unsequenced]] bool riscntrl(rune);
 [[unsequenced]] bool risdigit(rune);
@@ -186,9 +195,9 @@ enum joining_group {
 [[unsequenced]] bool risupper(rune);
 
 [[unsequenced]] enum general_category_bf rprop_get_general_category(rune);
-[[unsequenced]] enum joining_group rprop_get_joining_group(rune);
 [[unsequenced]] enum joining_type_bf rprop_get_joining_type(rune);
 [[unsequenced]] enum numeric_type_bf rprop_get_numeric_type(rune);
+[[unsequenced]] joining_group_bf rprop_get_joining_group(rune);
 
 /* Non-autogenerated rprop_is_*() functions */
 [[unsequenced]] bool rprop_is_ascii_hex_digit(rune);
