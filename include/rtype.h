@@ -219,6 +219,7 @@ typedef unsigned _BitInt(128) joining_group_bf;
 [[unsequenced]] bool rprop_is_join_control(rune);
 [[unsequenced]] bool rprop_is_noncharacter_code_point(rune);
 [[unsequenced]] bool rprop_is_pattern_white_space(rune);
+[[unsequenced]] bool rprop_is_regional_indicator(rune);
 
 /* PROP PREDICATES START */
 [[unsequenced]] bool rprop_is_alphabetic(rune);
@@ -260,7 +261,6 @@ typedef unsigned _BitInt(128) joining_group_bf;
 [[unsequenced]] bool rprop_is_prepended_concatenation_mark(rune);
 [[unsequenced]] bool rprop_is_quotation_mark(rune);
 [[unsequenced]] bool rprop_is_radical(rune);
-[[unsequenced]] bool rprop_is_regional_indicator(rune);
 [[unsequenced]] bool rprop_is_sentence_terminal(rune);
 [[unsequenced]] bool rprop_is_soft_dotted(rune);
 [[unsequenced]] bool rprop_is_terminal_punctuation(rune);

@@ -41,7 +41,6 @@ Pattern_Syntax
 Prepended_Concatenation_Mark
 Quotation_Mark
 Radical
-Regional_Indicator
 Sentence_Terminal
 Soft_Dotted
 Terminal_Punctuation
@@ -96,6 +95,7 @@ is_IDS_Unary_Operator
 is_Join_Control
 is_Noncharacter_Code_Point
 is_Pattern_White_Space
+is_Regional_Indicator
 '
 
 gen()
