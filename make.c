@@ -22,14 +22,16 @@
 #	define CFLAGS_RLS CFLAGS_ALL, "-O3", "-march=native", "-mtune=native"
 #endif
 
-#define CMDPRC(c) \
+#define _CMDPRC(C, F) \
 	do { \
 		int ec; \
-		cmdput2(c); \
-		if ((ec = cmdexec(c)) != EXIT_SUCCESS) \
-			diex("%s terminated with exit-code %d", *c._argv, ec); \
-		cmdclr(&c); \
+		F(C); \
+		if ((ec = cmdexec(C)) != EXIT_SUCCESS) \
+			diex("%s terminated with exit-code %d", *(C)._argv, ec); \
+		cmdclr(&(C)); \
 	} while (0)
+#define CMDPRC(C)  _CMDPRC(C, cmdput)
+#define CMDPRC2(C) _CMDPRC(C, cmdput2)
 
 #define streq(a, b) (!strcmp(a, b))
 
@@ -101,7 +103,7 @@ main(int argc, char **argv)
 			c.dst = "librune.a";
 			cmdadd(&c, "ar", "rcs", "librune.a");
 			cmdaddv(&c, g.gl_pathv, g.gl_pathc);
-			CMDPRC(c);
+			CMDPRC2(c);
 		}
 
 		globfree(&g);
@@ -131,7 +133,7 @@ work(void *p)
 		if (flagset('l'))
 			cmdadd(&c, "-flto");
 		cmdadd(&c, "-Iinclude", "-fPIC", "-o", c.dst, "-c", src);
-		CMDPRC(c);
+		CMDPRC2(c);
 	}
 
 	free(c.dst);
