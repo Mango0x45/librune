@@ -29,7 +29,7 @@ cat <<C
 #include "../types.h"
 #include "../../rtype.h"
 
-static const enum numeric_type_bf rtype_nt_lat1_tbl[] = {
+static const numeric_type_bf rtype_nt_lat1_tbl[] = {
 C
 
 gawk '
@@ -59,7 +59,7 @@ cat <<C
 
 static const struct {
 	rune lo, hi;
-	enum numeric_type_bf val;
+	numeric_type_bf val;
 } rtype_nt_tbl[] = {
 C
 

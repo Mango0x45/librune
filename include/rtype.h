@@ -5,72 +5,65 @@
 
 #include "internal/types.h"
 
-/* clang-format off */
-enum [[clang::flag_enum]] general_category_bf : uint_fast32_t {
-	GC_CN = 0,                 /* Not Assigned */
-	GC_CC = UINT32_C(1) <<  0, /* Control */
-	GC_CF = UINT32_C(1) <<  1, /* Format */
-	GC_CO = UINT32_C(1) <<  2, /* Private Use */
-	GC_CS = UINT32_C(1) <<  3, /* Surrogate */
-	GC_LL = UINT32_C(1) <<  4, /* Lowercase Letter */
-	GC_LM = UINT32_C(1) <<  5, /* Modifier Letter */
-	GC_LO = UINT32_C(1) <<  6, /* Other Letter */
-	GC_LT = UINT32_C(1) <<  7, /* Titlecase Letter */
-	GC_LU = UINT32_C(1) <<  8, /* Uppercase Letter */
-	GC_MC = UINT32_C(1) <<  9, /* Spacing Mark */
-	GC_ME = UINT32_C(1) << 10, /* Enclosing Mark */
-	GC_MN = UINT32_C(1) << 11, /* Nonspacing Mark */
-	GC_ND = UINT32_C(1) << 12, /* Decimal Number */
-	GC_NL = UINT32_C(1) << 13, /* Letter Number */
-	GC_NO = UINT32_C(1) << 14, /* Other Number */
-	GC_PC = UINT32_C(1) << 15, /* Connector Punctuation */
-	GC_PD = UINT32_C(1) << 16, /* Dash Punctuation */
-	GC_PE = UINT32_C(1) << 17, /* Close Punctuation */
-	GC_PF = UINT32_C(1) << 18, /* Final Punctuation */
-	GC_PI = UINT32_C(1) << 19, /* Initial Punctuation */
-	GC_PO = UINT32_C(1) << 20, /* Other Punctuation */
-	GC_PS = UINT32_C(1) << 21, /* Open Punctuation */
-	GC_SC = UINT32_C(1) << 22, /* Currency Symbol */
-	GC_SK = UINT32_C(1) << 23, /* Modifier Symbol */
-	GC_SM = UINT32_C(1) << 24, /* Math Symbol */
-	GC_SO = UINT32_C(1) << 25, /* Other Symbol */
-	GC_ZL = UINT32_C(1) << 26, /* Line Separator */
-	GC_ZP = UINT32_C(1) << 27, /* Paragraph Separator */
-	GC_ZS = UINT32_C(1) << 28, /* Space Separator */
+typedef uint_fast32_t general_category_bf;
+#define GC_CN ((general_category_bf)0)       /* Not Assigned */
+#define GC_CC ((general_category_bf)1 << 0)  /* Control */
+#define GC_CF ((general_category_bf)1 << 1)  /* Format */
+#define GC_CO ((general_category_bf)1 << 2)  /* Private Use */
+#define GC_CS ((general_category_bf)1 << 3)  /* Surrogate */
+#define GC_LL ((general_category_bf)1 << 4)  /* Lowercase Letter */
+#define GC_LM ((general_category_bf)1 << 5)  /* Modifier Letter */
+#define GC_LO ((general_category_bf)1 << 6)  /* Other Letter */
+#define GC_LT ((general_category_bf)1 << 7)  /* Titlecase Letter */
+#define GC_LU ((general_category_bf)1 << 8)  /* Uppercase Letter */
+#define GC_MC ((general_category_bf)1 << 9)  /* Spacing Mark */
+#define GC_ME ((general_category_bf)1 << 10) /* Enclosing Mark */
+#define GC_MN ((general_category_bf)1 << 11) /* Nonspacing Mark */
+#define GC_ND ((general_category_bf)1 << 12) /* Decimal Number */
+#define GC_NL ((general_category_bf)1 << 13) /* Letter Number */
+#define GC_NO ((general_category_bf)1 << 14) /* Other Number */
+#define GC_PC ((general_category_bf)1 << 15) /* Connector Punctuation */
+#define GC_PD ((general_category_bf)1 << 16) /* Dash Punctuation */
+#define GC_PE ((general_category_bf)1 << 17) /* Close Punctuation */
+#define GC_PF ((general_category_bf)1 << 18) /* Final Punctuation */
+#define GC_PI ((general_category_bf)1 << 19) /* Initial Punctuation */
+#define GC_PO ((general_category_bf)1 << 20) /* Other Punctuation */
+#define GC_PS ((general_category_bf)1 << 21) /* Open Punctuation */
+#define GC_SC ((general_category_bf)1 << 22) /* Currency Symbol */
+#define GC_SK ((general_category_bf)1 << 23) /* Modifier Symbol */
+#define GC_SM ((general_category_bf)1 << 24) /* Math Symbol */
+#define GC_SO ((general_category_bf)1 << 25) /* Other Symbol */
+#define GC_ZL ((general_category_bf)1 << 26) /* Line Separator */
+#define GC_ZP ((general_category_bf)1 << 27) /* Paragraph Separator */
+#define GC_ZS ((general_category_bf)1 << 28) /* Space Separator */
+#define GC_C  (GC_CC | GC_CF | GC_CN | GC_CO | GC_CS) /* Other */
+#define GC_LC (GC_LU | GC_LL | GC_LT)                 /* Cased Letter */
+#define GC_L  (GC_LL | GC_LM | GC_LO | GC_LT | GC_LU) /* Letter */
+#define GC_M  (GC_MC | GC_ME | GC_MN)                 /* Mark */
+#define GC_N  (GC_ND | GC_NL | GC_NO)                 /* Number */
+#define GC_S  (GC_SC | GC_SK | GC_SM | GC_SO)         /* Symbol */
+#define GC_Z  (GC_ZL | GC_ZP | GC_ZS)                 /* Separator */
+#define GC_P \
+	(GC_PC | GC_PD | GC_PE | GC_PF | GC_PI | GC_PO | GC_PS) /* Punctuation */
 
-	GC_C  = GC_CC | GC_CF | GC_CN | GC_CO | GC_CS, /* Other */
-	GC_L  = GC_LL | GC_LM | GC_LO | GC_LT | GC_LU, /* Letter */
-	GC_LC = GC_LU | GC_LL | GC_LT,                 /* Cased Letter */
-	GC_M  = GC_MC | GC_ME | GC_MN,                 /* Mark */
-	GC_N  = GC_ND | GC_NL | GC_NO,                 /* Number */
-	GC_P  = GC_PC | GC_PD | GC_PE | GC_PF | GC_PI  /* Punctuation */
-	      | GC_PO | GC_PS,
-	GC_S  = GC_SC | GC_SK | GC_SM | GC_SO,         /* Symbol */
-	GC_Z  = GC_ZL | GC_ZP | GC_ZS,                 /* Separator */
-};
+typedef unsigned int joining_type_bf;
+#define JT_U ((joining_type_bf)0)      /* Non Joining */
+#define JT_C ((joining_type_bf)1 << 0) /* Join Causing */
+#define JT_D ((joining_type_bf)1 << 1) /* Dual Joining */
+#define JT_R ((joining_type_bf)1 << 3) /* Right Joining */
+#define JT_L ((joining_type_bf)1 << 2) /* Left Joining */
+#define JT_T ((joining_type_bf)1 << 4) /* Transparent */
 
-enum [[clang::flag_enum]] joining_type_bf {
-	JT_U = 0,      /* Non Joining */
-	JT_C = 1 << 0, /* Join Causing */
-	JT_D = 1 << 1, /* Dual Joining */
-	JT_R = 1 << 3, /* Right Joining */
-	JT_L = 1 << 2, /* Left Joining */
-	JT_T = 1 << 4, /* Transparent */
-};
+typedef unsigned int numeric_type_bf;
+#define NT_NONE    ((numeric_type_bf)0)
+#define NT_DECIMAL ((numeric_type_bf)1 << 0)
+#define NT_DIGIT   ((numeric_type_bf)1 << 1)
+#define NT_NUMERIC ((numeric_type_bf)1 << 2)
 
-enum [[clang::flag_enum]] numeric_type_bf {
-	NT_NONE    = 0,
-	NT_DECIMAL = 1 << 0,
-	NT_DIGIT   = 1 << 1,
-	NT_NUMERIC = 1 << 2,
-};
-
-};
-/* clang-format on */
 
 /* GCC at the time of writing doesn’t properly support _BitInt */
 #ifdef __SIZEOF_INT128__
-typedef unsigned __int128 joining_group_bf;
+__extension__ typedef unsigned __int128 joining_group_bf;
 #elif BITINT_MAXWIDTH >= 128
 typedef unsigned _BitInt(128) joining_group_bf;
 #else
@@ -194,10 +187,10 @@ typedef unsigned _BitInt(128) joining_group_bf;
 [[unsequenced]] bool ristitle(rune);
 [[unsequenced]] bool risupper(rune);
 
-[[unsequenced]] enum general_category_bf rprop_get_general_category(rune);
-[[unsequenced]] enum joining_type_bf rprop_get_joining_type(rune);
-[[unsequenced]] enum numeric_type_bf rprop_get_numeric_type(rune);
+[[unsequenced]] general_category_bf rprop_get_general_category(rune);
 [[unsequenced]] joining_group_bf rprop_get_joining_group(rune);
+[[unsequenced]] joining_type_bf rprop_get_joining_type(rune);
+[[unsequenced]] numeric_type_bf rprop_get_numeric_type(rune);
 
 /* Non-autogenerated rprop_is_*() functions */
 [[unsequenced]] bool rprop_is_ascii_hex_digit(rune);
