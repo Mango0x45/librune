@@ -1,4 +1,5 @@
 #define _GNU_SOURCE
+#include <ctype.h>
 #include <errno.h>
 #include <glob.h>
 #include <libgen.h>
@@ -21,10 +22,10 @@
 #	define CFLAGS_RLS CFLAGS_ALL, "-O3", "-march=native", "-mtune=native"
 #endif
 
-#define cmdprc(c) \
+#define CMDPRC(c) \
 	do { \
 		int ec; \
-		cmdput(c); \
+		cmdput2(c); \
 		if ((ec = cmdexec(c)) != EXIT_SUCCESS) \
 			diex("%s terminated with exit-code %d", *c._argv, ec); \
 		cmdclr(&c); \
@@ -36,6 +37,7 @@
 
 static void work(void *);
 static int globerr(const char *, int);
+static void cmdput2(cmd_t);
 
 static uint32_t flags;
 
@@ -64,7 +66,7 @@ main(int argc, char **argv)
 		if (streq(*argv, "clean")) {
 			cmd_t c = {0};
 			cmdadd(&c, "find", ".", "-name", "*.[ao]", "-delete");
-			cmdprc(c);
+			CMDPRC(c);
 		} else {
 			diex("invalid subcommand -- '%s'", *argv);
 			exit(EXIT_FAILURE);
@@ -96,9 +98,10 @@ main(int argc, char **argv)
 		if (flagset('f')
 		    || foutdatedv("librune.a", (const char **)g.gl_pathv, g.gl_pathc))
 		{
+			c.dst = "librune.a";
 			cmdadd(&c, "ar", "rcs", "librune.a");
 			cmdaddv(&c, g.gl_pathv, g.gl_pathc);
-			cmdprc(c);
+			CMDPRC(c);
 		}
 
 		globfree(&g);
@@ -111,14 +114,14 @@ void
 work(void *p)
 {
 	cmd_t c = {0};
-	char *dst, *src = p;
+	char *src = p;
 	struct strv sv = {0};
 
-	if (!(dst = strdup(src)))
+	if (!(c.dst = strdup(src)))
 		die("strdup");
-	dst[strlen(dst) - 1] = 'o';
+	c.dst[strlen(c.dst) - 1] = 'o';
 
-	if (flagset('f') || foutdated(dst, src)) {
+	if (flagset('f') || foutdated(c.dst, src)) {
 		env_or_default(&sv, "CC", CC);
 		if (flagset('r'))
 			env_or_default(&sv, "CFLAGS", CFLAGS_RLS);
@@ -127,11 +130,11 @@ work(void *p)
 		cmdaddv(&c, sv.buf, sv.len);
 		if (flagset('l'))
 			cmdadd(&c, "-flto");
-		cmdadd(&c, "-Iinclude", "-fPIC", "-o", dst, "-c", src);
-		cmdprc(c);
+		cmdadd(&c, "-Iinclude", "-fPIC", "-o", c.dst, "-c", src);
+		CMDPRC(c);
 	}
 
-	free(dst);
+	free(c.dst);
 }
 
 int
@@ -139,4 +142,16 @@ globerr(const char *s, int e)
 {
 	errno = e;
 	die("glob: %s", s);
+}
+
+void
+cmdput2(cmd_t c)
+{
+	const char *p;
+
+	flockfile(stderr);
+	for (p = *c._argv; *p; p++)
+		fputc(toupper(*p), stderr);
+	fprintf(stderr, "\t%s\n", c.dst);
+	funlockfile(stderr);
 }

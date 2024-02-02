@@ -171,6 +171,7 @@ static void cbsinit(int, char **);
    ._len.  You may safely read from both of these fields but they should NOT be
    modified without use of cmdadd() and cmdaddv(). */
 typedef struct {
+	char *dst;
 	char **_argv;
 	size_t _len, _cap;
 } cmd_t;
