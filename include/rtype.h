@@ -60,6 +60,25 @@ typedef unsigned int numeric_type_bf;
 #define NT_DIGIT   ((numeric_type_bf)1 << 1)
 #define NT_NUMERIC ((numeric_type_bf)1 << 2)
 
+typedef uint_fast32_t decomposition_type_bf;
+#define DT_NONE      ((decomposition_type_bf)0)
+#define DT_CANONICAL ((decomposition_type_bf)1 << 0)
+#define DT_CIRCLE    ((decomposition_type_bf)1 << 1)
+#define DT_COMPAT    ((decomposition_type_bf)1 << 2)
+#define DT_FINAL     ((decomposition_type_bf)1 << 3)
+#define DT_FONT      ((decomposition_type_bf)1 << 4)
+#define DT_FRACTION  ((decomposition_type_bf)1 << 5)
+#define DT_INITIAL   ((decomposition_type_bf)1 << 6)
+#define DT_ISOLATED  ((decomposition_type_bf)1 << 7)
+#define DT_MEDIAL    ((decomposition_type_bf)1 << 8)
+#define DT_NARROW    ((decomposition_type_bf)1 << 9)
+#define DT_NOBREAK   ((decomposition_type_bf)1 << 10)
+#define DT_SMALL     ((decomposition_type_bf)1 << 11)
+#define DT_SQUARE    ((decomposition_type_bf)1 << 12)
+#define DT_SUB       ((decomposition_type_bf)1 << 13)
+#define DT_SUPER     ((decomposition_type_bf)1 << 14)
+#define DT_VERTICAL  ((decomposition_type_bf)1 << 15)
+#define DT_WIDE      ((decomposition_type_bf)1 << 16)
 
 /* GCC at the time of writing doesn’t properly support _BitInt */
 #ifdef __SIZEOF_INT128__
@@ -187,6 +206,7 @@ typedef unsigned _BitInt(128) joining_group_bf;
 [[unsequenced]] bool ristitle(rune);
 [[unsequenced]] bool risupper(rune);
 
+[[unsequenced]] decomposition_type_bf rprop_get_decomposition_type(rune);
 [[unsequenced]] general_category_bf rprop_get_general_category(rune);
 [[unsequenced]] joining_group_bf rprop_get_joining_group(rune);
 [[unsequenced]] joining_type_bf rprop_get_joining_type(rune);
