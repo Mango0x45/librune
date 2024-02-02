@@ -9,7 +9,7 @@
 #include "../types.h"
 #include "../../rtype.h"
 
-static const vertical_orientation_bf rtype_vo_lat1_tbl[] = {
+static const rprop_vo_bf rtype_vo_lat1_tbl[] = {
 	 VO_R,  VO_R,  VO_R,  VO_R,  VO_R,  VO_R,  VO_R,  VO_R,
 	 VO_R,  VO_R,  VO_R,  VO_R,  VO_R,  VO_R,  VO_R,  VO_R,
 	 VO_R,  VO_R,  VO_R,  VO_R,  VO_R,  VO_R,  VO_R,  VO_R,
@@ -48,7 +48,7 @@ static const vertical_orientation_bf rtype_vo_lat1_tbl[] = {
    remove them from the lookup table for a dramatic decrease in size. */
 static const struct {
 	rune lo, hi;
-	vertical_orientation_bf val;
+	rprop_vo_bf val;
 } rtype_vo_tbl[] = {
 	{0x0000A7, 0x0000A7, VO_U},
 	{0x0000A9, 0x0000A9, VO_U},

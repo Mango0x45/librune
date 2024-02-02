@@ -29,7 +29,7 @@ cat <<C
 #include "../types.h"
 #include "../../rtype.h"
 
-static const general_category_bf rtype_gc_lat1_tbl[] = {
+static const rprop_gc_bf rtype_gc_lat1_tbl[] = {
 C
 
 gawk '
@@ -64,7 +64,7 @@ cat <<C
 
 static const struct {
 	rune lo, hi;
-	general_category_bf val;
+	rprop_gc_bf val;
 } rtype_gc_tbl[] = {
 C
 

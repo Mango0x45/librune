@@ -11,7 +11,7 @@
 
 static const struct {
 	rune lo, hi;
-	joining_group_bf val;
+	rprop_jg_bf val;
 } rtype_jg_tbl[] = {
 	{0x000620, 0x000620, JG_YEH},
 	{0x000622, 0x000623, JG_ALEF},

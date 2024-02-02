@@ -9,7 +9,7 @@
 #include "../types.h"
 #include "../../rtype.h"
 
-static const decomposition_type_bf rtype_dt_lat1_tbl[] = {
+static const rprop_dt_bf rtype_dt_lat1_tbl[] = {
 	     DT_NONE,      DT_NONE,      DT_NONE,      DT_NONE,
 	     DT_NONE,      DT_NONE,      DT_NONE,      DT_NONE,
 	     DT_NONE,      DT_NONE,      DT_NONE,      DT_NONE,
@@ -78,7 +78,7 @@ static const decomposition_type_bf rtype_dt_lat1_tbl[] = {
 
 static const struct {
 	rune lo, hi;
-	decomposition_type_bf val;
+	rprop_dt_bf val;
 } rtype_dt_tbl[] = {
 	{0x0000A0, 0x0000A0, DT_NOBREAK},
 	{0x0000A8, 0x0000A8, DT_COMPAT},

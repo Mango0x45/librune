@@ -12,5 +12,5 @@ risspace(rune ch)
 {
 	if (ch <= LATIN1_MAX)
 		return latin1_space_tbl[ch];
-	return rprop_get_general_category(ch) & GC_Z;
+	return rprop_get_gc(ch) & GC_Z;
 }

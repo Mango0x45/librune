@@ -29,7 +29,7 @@ cat <<C
 #include "../types.h"
 #include "../../rtype.h"
 
-static const vertical_orientation_bf rtype_vo_lat1_tbl[] = {
+static const rprop_vo_bf rtype_vo_lat1_tbl[] = {
 C
 
 gawk '
@@ -61,7 +61,7 @@ cat <<C
    remove them from the lookup table for a dramatic decrease in size. */
 static const struct {
 	rune lo, hi;
-	vertical_orientation_bf val;
+	rprop_vo_bf val;
 } rtype_vo_tbl[] = {
 C
 

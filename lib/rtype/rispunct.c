@@ -3,5 +3,5 @@
 bool
 rispunct(rune ch)
 {
-	return rprop_get_general_category(ch) & GC_P;
+	return rprop_get_gc(ch) & GC_P;
 }

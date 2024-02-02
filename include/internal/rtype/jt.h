@@ -9,7 +9,7 @@
 #include "../types.h"
 #include "../../rtype.h"
 
-static const joining_type_bf rtype_jt_lat1_tbl[] = {
+static const rprop_jt_bf rtype_jt_lat1_tbl[] = {
 	JT_U, JT_U, JT_U, JT_U, JT_U, JT_U, JT_U, JT_U,
 	JT_U, JT_U, JT_U, JT_U, JT_U, JT_U, JT_U, JT_U,
 	JT_U, JT_U, JT_U, JT_U, JT_U, JT_U, JT_U, JT_U,
@@ -46,7 +46,7 @@ static const joining_type_bf rtype_jt_lat1_tbl[] = {
 
 static const struct {
 	rune lo, hi;
-	joining_type_bf val;
+	rprop_jt_bf val;
 } rtype_jt_tbl[] = {
 	{0x0000AD, 0x0000AD, JT_T},
 	{0x000300, 0x00036F, JT_T},

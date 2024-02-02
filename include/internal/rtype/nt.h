@@ -9,7 +9,7 @@
 #include "../types.h"
 #include "../../rtype.h"
 
-static const numeric_type_bf rtype_nt_lat1_tbl[] = {
+static const rprop_nt_bf rtype_nt_lat1_tbl[] = {
 	   NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,
 	   NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,
 	   NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,    NT_NONE,
@@ -46,7 +46,7 @@ static const numeric_type_bf rtype_nt_lat1_tbl[] = {
 
 static const struct {
 	rune lo, hi;
-	numeric_type_bf val;
+	rprop_nt_bf val;
 } rtype_nt_tbl[] = {
 	{0x000030, 0x000039, NT_DECIMAL},
 	{0x0000B2, 0x0000B3, NT_DIGIT},

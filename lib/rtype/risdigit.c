@@ -3,5 +3,5 @@
 bool
 risdigit(rune ch)
 {
-	return rprop_get_general_category(ch) & GC_ND;
+	return rprop_get_gc(ch) & GC_ND;
 }

@@ -29,7 +29,7 @@ cat <<C
 #include "../types.h"
 #include "../../rtype.h"
 
-static const decomposition_type_bf rtype_dt_lat1_tbl[] = {
+static const rprop_dt_bf rtype_dt_lat1_tbl[] = {
 C
 
 gawk '
@@ -59,7 +59,7 @@ cat <<C
 
 static const struct {
 	rune lo, hi;
-	decomposition_type_bf val;
+	rprop_dt_bf val;
 } rtype_dt_tbl[] = {
 C
 

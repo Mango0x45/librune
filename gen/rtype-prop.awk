@@ -57,7 +57,7 @@ END {
 	print  "#include \"internal/rtype/lookup-func.h\""
 	print  ""
 	print  "bool"
-	printf "rprop_%s_%s(rune ch)\n", word, tolower(prop)
+	printf "rprop_%s_%s(rune ch)\n", word, short
 	print  "{"
 	if (mask > 0) {
 		print "\treturn"

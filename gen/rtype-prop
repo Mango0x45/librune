@@ -26,84 +26,85 @@ cache "$URL5" &
 wait
 
 props1='
-Bidi_Control
-Dash
-Deprecated
-Diacritic
-Extender
-Hex_Digit
-ID_Compat_Math_Continue
-ID_Compat_Math_Start
-Ideographic
-IDS_Binary_Operator
-Logical_Order_Exception
-Pattern_Syntax
-Prepended_Concatenation_Mark
-Quotation_Mark
-Radical
-Sentence_Terminal
-Soft_Dotted
-Terminal_Punctuation
-Unified_Ideograph
-Variation_Selector
-White_Space
+bidi_c=Bidi_Control
+dash=Dash
+dep=Deprecated
+dia=Diacritic
+ext=Extender
+hex=Hex_Digit
+idbo=IDS_Binary_Operator
+id_compat_math_continue=ID_Compat_Math_Continue
+id_compat_math_start=ID_Compat_Math_Start
+ideo=Ideographic
+loe=Logical_Order_Exception
+pat_syn=Pattern_Syntax
+pcm=Prepended_Concatenation_Mark
+qmark=Quotation_Mark
+radical=Radical
+sd=Soft_Dotted
+sterm=Sentence_Terminal
+term=Terminal_Punctuation
+uideo=Unified_Ideograph
+vs=Variation_Selector
+wspace=White_Space
 '
 
 props2='
-Alphabetic
-Cased
-Case_Ignorable
-Changes_When_Casefolded
-Changes_When_Casemapped
-Changes_When_Lowercased
-Changes_When_Titlecased
-Changes_When_Uppercased
-Default_Ignorable_Code_Point
-Grapheme_Base
-Grapheme_Extend
-ID_Continue
-ID_Start
-Indic_Conjunct_Break
-Lowercase
-Math
-Uppercase
-XID_Continue
-XID_Start
+alpha=Alphabetic
+cased=Cased
+ci=Case_Ignorable
+cwcf=Changes_When_Casefolded
+cwcm=Changes_When_Casemapped
+cwl=Changes_When_Lowercased
+cwt=Changes_When_Titlecased
+cwu=Changes_When_Uppercased
+di=Default_Ignorable_Code_Point
+gr_base=Grapheme_Base
+gr_ext=Grapheme_Extend
+idc=ID_Continue
+ids=ID_Start
+incb=Indic_Conjunct_Break
+lower=Lowercase
+math=Math
+upper=Uppercase
+xidc=XID_Continue
+xids=XID_Start
 '
 
 props3='
-Emoji
-Emoji_Component
-Emoji_Modifier
-Emoji_Modifier_Base
-Emoji_Presentation
-Extended_Pictographic
+ebase=Emoji_Modifier_Base
+ecomp=Emoji_Component
+emod=Emoji_Modifier
+emoji=Emoji
+epres=Emoji_Presentation
+extpic=Extended_Pictographic
 '
 
 props4='
-Changes_When_NFKC_Casefolded
+cwkcf=Changes_When_NFKC_Casefolded
 '
 
 props5='
-Bidi_Mirrored
+bidi_m=Bidi_Mirrored
 '
 
 manual='
-is_ASCII_Hex_Digit
-is_IDS_Trinary_Operator
-is_IDS_Unary_Operator
-is_Join_Control
-is_Noncharacter_Code_Point
-is_Pattern_White_Space
-is_Regional_Indicator
+ahex=ASCII_Hex_Digit
+idst=IDS_Trinary_Operator
+idsu=IDS_Unary_Operator
+join_c=Join_Control
+nchar=Noncharacter_Code_Point
+pat_ws=Pattern_White_Space
+ri=Regional_Indicator
 '
 
 gen()
 {
-	local l=$(echo $1 | tr A-Z a-z)
-	gawk -M -v prop=$1 -v word=$2 -f gen/rtype-prop.awk /tmp/librune/rtype/$3 \
-		>lib/rtype/rprop_${2}_${l}.c
-	printf 'DONE rprop_%s_%s()\n' $2 $l >&2
+	local p=${1%%=*}
+	gawk -M -v prop=${1#*=} -v word=$2 -v short=$p \
+		-f gen/rtype-prop.awk /tmp/librune/rtype/$3 \
+		>lib/rtype/rprop_${2}_${p}.c
+	printf 'DONE rprop_%s_%s()\n' $2 $p >&2
 }
 
 for prop in $props1
@@ -132,7 +133,7 @@ do
 done
 
 printf '[[unsequenced]] bool rprop_is_%s(rune);\n' \
-	$(echo $props1 $props2 $props3 $props4 $props5 | tr A-Z a-z) \
+	$(printf '%s\n' $props1 $props2 $props3 $props4 $props5 | cut -d= -f1) \
 | gawk '
 	/PROP PREDICATES END/ { no = 0 }
 	FILENAME != "-" && !no { print }
@@ -149,6 +150,6 @@ printf '[[unsequenced]] bool rprop_is_%s(rune);\n' \
 wait
 for prop in $manual
 do
-	lprop=$(echo $prop | tr A-Z a-z)
-	printf 'Function rprop_%s() implemented manually\n' $lprop >&2
+	shrt=${prop%%=*}
+	printf 'Function rprop_is_%s() implemented manually\n' $shrt >&2
 done

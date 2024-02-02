@@ -9,7 +9,7 @@
 #include "../types.h"
 #include "../../rtype.h"
 
-static const general_category_bf rtype_gc_lat1_tbl[] = {
+static const rprop_gc_bf rtype_gc_lat1_tbl[] = {
 	GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC,
 	GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC,
 	GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC, GC_CC,
@@ -46,7 +46,7 @@ static const general_category_bf rtype_gc_lat1_tbl[] = {
 
 static const struct {
 	rune lo, hi;
-	general_category_bf val;
+	rprop_gc_bf val;
 } rtype_gc_tbl[] = {
 	{0x000100, 0x000100, GC_LU},
 	{0x000101, 0x000101, GC_LL},
