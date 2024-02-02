@@ -60,7 +60,7 @@ cat <<C
 static const struct {
 	rune lo, hi;
 	enum numeric_type_bf val;
-} rtype_jt_tbl[] = {
+} rtype_nt_tbl[] = {
 C
 
 gawk '

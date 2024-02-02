@@ -47,7 +47,7 @@ static const enum numeric_type_bf rtype_nt_lat1_tbl[] = {
 static const struct {
 	rune lo, hi;
 	enum numeric_type_bf val;
-} rtype_jt_tbl[] = {
+} rtype_nt_tbl[] = {
 	{0x000030, 0x000039, NT_DECIMAL},
 	{0x0000B2, 0x0000B3, NT_DIGIT},
 	{0x0000B9, 0x0000B9, NT_DIGIT},
