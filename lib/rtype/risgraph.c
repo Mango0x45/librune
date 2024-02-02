@@ -3,5 +3,5 @@
 bool
 risgraph(rune ch)
 {
-	return runeis(ch, UC_L | UC_M | UC_N | UC_P | UC_ZS);
+	return rprop_get_general_category(ch) & (GC_L | GC_M | GC_N | GC_P | GC_ZS);
 }

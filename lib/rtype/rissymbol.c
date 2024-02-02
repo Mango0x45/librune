@@ -3,5 +3,5 @@
 bool
 rissymbol(rune ch)
 {
-	return runeis(ch, UC_S);
+	return rprop_get_general_category(ch) & GC_S;
 }

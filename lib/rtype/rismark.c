@@ -3,5 +3,5 @@
 bool
 rismark(rune ch)
 {
-	return runeis(ch, UC_M);
+	return rprop_get_general_category(ch) & GC_M;
 }

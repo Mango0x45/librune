@@ -3,5 +3,5 @@
 bool
 risupper(rune ch)
 {
-	return runeis(ch, UC_LU);
+	return rprop_get_general_category(ch) & GC_LU;
 }

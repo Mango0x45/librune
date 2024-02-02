@@ -3,5 +3,5 @@
 bool
 rislower(rune ch)
 {
-	return runeis(ch, UC_LL);
+	return rprop_get_general_category(ch) & GC_LL;
 }
