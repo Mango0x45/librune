@@ -14,6 +14,17 @@
 #ifndef HAS_VALUE
 #	error "HAS_VALUE is not defined"
 #endif
+#ifndef RANGE
+#	define RANGE 1
+#endif
+
+#if RANGE
+#	define LO lo
+#	define HI hi
+#else
+#	define LO key
+#	define HI key
+#endif
 
 [[gnu::always_inline]] static TYPE
 lookup(rune ch)
@@ -31,9 +42,9 @@ lookup(rune ch)
 	while (lo <= hi) {
 		ptrdiff_t i = (lo + hi) / 2;
 
-		if (ch < TABLE[i].lo)
+		if (ch < TABLE[i].LO)
 			hi = i - 1;
-		else if (ch > TABLE[i].hi)
+		else if (ch > TABLE[i].HI)
 			lo = i + 1;
 		else
 #if HAS_VALUE
