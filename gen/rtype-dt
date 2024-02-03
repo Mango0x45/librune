@@ -28,6 +28,7 @@ cat <<C
 
 #include "../types.h"
 #include "../../rtype.h"
+#include "../../rune.h"
 
 static const rprop_dt_bf rtype_dt_lat1_tbl[] = {
 C
@@ -84,7 +85,8 @@ END {
 		lo = i
 		while (props[lo] == props[i + 1])
 			i++
-		printf "\t{0x%06X, 0x%06X, DT_%s},\n", lo, i, toupper(props[lo])
+		printf("\t{RUNE_C(0x%06X), RUNE_C(0x%06X), DT_%s},\n",
+		       lo, i, toupper(props[lo]))
 	}
 }
 ' /tmp/librune/rtype/DerivedDecompositionType.txt | sort

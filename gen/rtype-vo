@@ -28,6 +28,7 @@ cat <<C
 
 #include "../types.h"
 #include "../../rtype.h"
+#include "../../rune.h"
 
 static const rprop_vo_bf rtype_vo_lat1_tbl[] = {
 C
@@ -87,7 +88,7 @@ END {
 		while (props[lo] == props[i + 1])
 			i++
 		if ((p = toupper(props[lo])) != "R")
-			printf "\t{0x%06X, 0x%06X, VO_%s},\n", lo, i, p
+			printf "\t{RUNE_C(0x%06X), RUNE_C(0x%06X), VO_%s},\n", lo, i, p
 	}
 }
 ' /tmp/librune/rtype/VerticalOrientation.txt | sort

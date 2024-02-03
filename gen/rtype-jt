@@ -28,6 +28,7 @@ cat <<C
 
 #include "../types.h"
 #include "../../rtype.h"
+#include "../../rune.h"
 
 static const rprop_jt_bf rtype_jt_lat1_tbl[] = {
 C
@@ -84,7 +85,7 @@ END {
 		lo = i
 		while (props[lo] == props[i + 1])
 			i++
-		printf "\t{0x%06X, 0x%06X, JT_%s},\n", lo, i, props[lo]
+		printf "\t{RUNE_C(0x%06X), RUNE_C(0x%06X), JT_%s},\n", lo, i, props[lo]
 	}
 }
 ' /tmp/librune/rtype/DerivedJoiningType.txt | sort

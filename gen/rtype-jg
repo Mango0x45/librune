@@ -28,6 +28,7 @@ cat <<C
 
 #include "../types.h"
 #include "../../rtype.h"
+#include "../../rune.h"
 
 static const struct {
 	rune lo, hi;
@@ -56,7 +57,7 @@ END {
 		lo = i
 		while (props[lo] == props[i + 1])
 			i++
-		printf "\t{0x%06X, 0x%06X, JG_%s},\n", lo, i, props[lo]
+		printf "\t{RUNE_C(0x%06X), RUNE_C(0x%06X), JG_%s},\n", lo, i, props[lo]
 	}
 }
 ' /tmp/librune/rtype/DerivedJoiningGroup.txt | sort
