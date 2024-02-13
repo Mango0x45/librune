@@ -12,7 +12,7 @@ struct u8view {
 	size_t len;
 };
 
-#	define PRIsU8          "%.*s"
+#	define PRIsU8          ".*s"
 #	define U8_PRI_ARGS(sv) ((int)(sv).len), ((sv).p)
 
 #	define _RUNE_HAS_U8VIEW 1
