@@ -6,5 +6,6 @@
 
 size_t u8glen(const char8_t *, size_t);
 size_t u8gnext(struct u8view *, const char8_t **, size_t *);
+size_t u8gprev(struct u8view *, const char8_t **, const char8_t *);
 
 #endif /* !RUNE_GBRK_H */
