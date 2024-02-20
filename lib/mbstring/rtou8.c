@@ -1,6 +1,7 @@
 #include <stddef.h>
 
 #include "mbstring.h"
+#include "rune.h"
 
 #include "internal/common.h"
 
@@ -34,5 +35,5 @@ rtou8(char8_t *s, rune ch, size_t n)
 		return 4;
 	}
 
-	unreachable();
+	return rtou8(s, RUNE_ERROR, n);
 }

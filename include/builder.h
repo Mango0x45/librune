@@ -21,15 +21,15 @@ struct u8str *u8strpushu8(struct u8str *, struct u8view);
 [[gnu::always_inline]] static inline struct u8view
 u8strtou8(struct u8str s)
 {
-	return (struct u8view){s.p, s.len};
+	return (struct u8view){.p = s.p, .len = s.len};
 }
 
-#define u8strpush(b, x) \
-	_Generic((x), \
+#define u8strpush(SB, X) \
+	_Generic((X), \
 	    char: u8strpushr, \
 	    int: u8strpushr, \
 	    rune: u8strpushr, \
 	    char *: u8strpushstr, \
-	    struct u8view: u8strpushu8)((b), (x))
+	    struct u8view: u8strpushu8)((SB), (X))
 
 #endif /* !RUNE_BUILDER_H */

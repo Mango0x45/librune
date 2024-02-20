@@ -5,7 +5,7 @@
 #include "internal/common.h"
 
 int
-u8rlen(const char8_t *s)
+u8rsize(const char8_t *s)
 {
 	if (U1(*s))
 		return 1;
@@ -15,6 +15,5 @@ u8rlen(const char8_t *s)
 		return 3;
 	else if (U4(*s))
 		return 4;
-
-	unreachable();
+	return 1;
 }

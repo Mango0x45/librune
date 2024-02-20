@@ -34,8 +34,10 @@ u8gnext(struct u8view *g, const char8_t **s, size_t *n)
 	if (*n == 0)
 		return 0;
 
-	g->p = p = *s;
-	p += u8tor_uc(&ch1, p);
+	p = *s;
+	if (g)
+		g->p = p;
+	p += u8tor(&ch1, p);
 
 	for (;;) {
 		rune ch2;
@@ -43,11 +45,14 @@ u8gnext(struct u8view *g, const char8_t **s, size_t *n)
 		if ((size_t)(p - *s) >= *n)
 			ch2 = 0;
 		else
-			m = u8tor_uc(&ch2, p);
+			m = u8tor(&ch2, p);
 		if (u8isgbrk(ch1, ch2, &gs)) {
-			*n -= g->len = p - *s;
+			ptrdiff_t d = p - *s;
+			*n -= d;
 			*s = p;
-			return g->len;
+			if (g)
+				g->len = d;
+			return d;
 		}
 
 		ch1 = ch2;
