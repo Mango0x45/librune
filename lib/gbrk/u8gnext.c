@@ -3,7 +3,6 @@
 #include "gbrk.h"
 #include "mbstring.h"
 
-#include "internal/common.h"
 #include "internal/gbrk_lookup.h"
 
 struct gbrk_state {
