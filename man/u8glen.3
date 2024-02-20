@@ -1,4 +1,4 @@
-.Dd January 15 2024
+.Dd February 20 2024
 .Dt U8GLEN 3
 .Os
 .Sh NAME
@@ -20,9 +20,7 @@ of length
 .Fa n
 bytes.
 .Pp
-This function assumes that
-.Fa s
-contains only valid UTF-8.
+Invalid bytes are interpreted as having a length of 1 byte.
 .Sh RETURN VALUES
 The
 .Fn u8glen
@@ -45,7 +43,6 @@ glen = u8glen(s, sizeof(s) - 1);
 .Ed
 .Sh SEE ALSO
 .Xr u8len 3 ,
-.Xr u8wdth 3 ,
 .Xr unicode 7 ,
 .Xr utf\-8 7
 .Sh STANDARDS

@@ -1,9 +1,8 @@
-.Dd January 18 2024
+.Dd February 20 2024
 .Dt U8TOR 3
 .Os
 .Sh NAME
-.Nm u8tor ,
-.Nm u8tor_uc
+.Nm u8tor
 .Nd decode UTF-8 into a rune
 .Sh LIBRARY
 .Lb librune
@@ -11,49 +10,27 @@
 .In mbstring.h
 .Ft int
 .Fn u8tor "rune *ch" "const char8_t *s"
-.Ft int
-.Fn u8tor_uc "rune *ch" "const char8_t *s"
 .Sh DESCRIPTION
 The
 .Fn u8tor
-and
-.Fn u8tor_uc
-functions decode the first rune in the UTF-8 buffer
+function decodes the first rune in the UTF-8 buffer
 .Fa s ,
 storing the result in the rune pointed to by
-.Fa ch .
-Both functions return the number of bytes which compose the decoded
+.Fa ch
+and returns the number of bytes which compose the decoded
 UTF-8.
 .Pp
-The two functions are nearly identical,
-however
-.Fn u8tor_uc
-performs fewer range checks than
-.Fn u8tor
-allowing it to process data more efficiently.
-When provided with invalid UTF-8 however,
-.Fn u8tor_uc
-engages in undefined-behavior.
-The
-.Fn u8tor
-function on the other hand handles invalid UTF-8 by storing
-.Dv RUNE_ERROR
-in
-.Fa ch
-and returning 1.
+If attempting to decode an invalid byte,
+.Va *ch
+will be set to
+.Dv RUNE_ERROR.
 .Sh RETURN VALUES
 The
 .Fn u8tor
-and
-.Fn u8tor_uc
-functions return the number of bytes from
+function returns the number of bytes from
 .Fa s
 decoded into
 .Fa ch .
-.Pp
-The
-.Fn u8tor
-function returns 1 on invalid UTF-8.
 .Sh EXAMPLES
 The following call to
 .Fn u8tor
@@ -77,6 +54,7 @@ printf("Got rune ‘%.*s’\en", w, buf);
 .Xr rtou8 3 ,
 .Xr u8chk 3 ,
 .Xr u8next 3 ,
+.Xr RUNE_ERROR 3const,
 .Xr unicode 7 ,
 .Xr utf\-8 7
 .Sh STANDARDS

@@ -14,7 +14,6 @@ int rtou8(char8_t *, rune, size_t);
 int u8cmp(struct u8view, struct u8view);
 int u8next(rune *, const char8_t **, size_t *);
 int u8prev(rune *, const char8_t **, const char8_t *);
-int u8rsize(const char8_t *);
 int u8tor(rune *, const char8_t *);
 size_t u8bspn(const char8_t *, size_t, const rune *, size_t);
 size_t u8len(const char8_t *, size_t);

@@ -1,4 +1,4 @@
-.Dd January 27 2024
+.Dd February 20 2024
 .Dt U8NEXT 3
 .Os
 .Sh NAME
@@ -42,7 +42,11 @@ is set to UTF-8 codepoint pointed to by
 .Fa s
 after iteration.
 .Pp
-Both of these functions assume the input is valid UTF-8.
+Both of these functions set
+.Va *ch
+to
+.Dv RUNE_ERROR
+in the case of invalid UTF-8.
 .Sh RETURN VALUES
 The
 .Fn u8next
@@ -94,6 +98,7 @@ while (w = u8prev(&ch, &s, start))
 .Xr rune 3 ,
 .Xr u8gnext 3 ,
 .Xr u8tor 3 ,
+.Xr RUNE_ERROR 3const ,
 .Xr unicode 7 ,
 .Xr utf\-8 7
 .Sh STANDARDS

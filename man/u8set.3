@@ -1,4 +1,4 @@
-.Dd January 27 2024
+.Dd February 20 2024
 .Dt U8SET 3
 .Os
 .Sh NAME
@@ -24,6 +24,12 @@ of length
 .Fa n ,
 returning the number of bytes required to UTF-8 encode
 .Fa ch .
+If
+.Fa s
+is too small,
+no data is written to it but the number of bytes required to UTF-8 encode
+.Fa ch
+is still returned.
 .Pp
 The
 .Fn u8set
@@ -57,7 +63,8 @@ and a count shorter than
 .Fa n
 is returned.
 .Pp
-Both of these functions assume the input is valid UTF-8.
+Both of these functions treat an invalid rune as
+.Dv RUNE_ERROR .
 .Sh RETURN VALUES
 The
 .Fn rtou8
@@ -89,7 +96,7 @@ rtou8(s + bufsiz - bdr_wdth, U'┐', bdr_wdth);
 .Ed
 .Sh SEE ALSO
 .Xr u8tor 3 ,
-.Xr u8tor_uc 3 ,
+.Xr RUNE_ERROR 3const ,
 .Xr unicode 7 ,
 .Xr utf\-8 7
 .Sh STANDARDS
