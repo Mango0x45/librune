@@ -6,6 +6,7 @@ BEGIN {
 	print "#include \"rtype.h\""
 	print "#include \"rune.h\""
 	print ""
+	print "#include \"internal/bitset.h\""
 	print "#include \"internal/common.h\""
 	print ""
 	print "/* clang-format off */"
@@ -29,10 +30,10 @@ END {
 		}
 	}
 	if (mask > 0) {
-		print  "#if BIT_LOOKUP"
-		print  "static const unsigned _BitInt(LATIN1_MAX + 1) mask ="
-		printf "\t0x%064Xuwb;\n", mask
-		print  "#endif"
+		print "static const uint64_t bitset[] = {"
+		for (i = 0; i < 4; i++)
+			printf "\tUINT64_C(0x%016X),\n", and(rshift(mask, 64 * i), 0xFFFFFFFFFFFFFFFF)
+		print "};"
 		print  ""
 	}
 
@@ -40,7 +41,7 @@ END {
 	print "\trune lo, hi;"
 	print "} lookup_tbl[] = {"
 
-	for (i = 0; i <= 0x10FFFF; i++) {
+	for (i = 0x100; i <= 0x10FFFF; i++) {
 		if (!xs[i])
 			continue
 		lo = i
@@ -60,13 +61,9 @@ END {
 	print  "bool"
 	printf "rprop_%s_%s(rune ch)\n", word, short
 	print  "{"
-	if (mask > 0) {
-		print "\treturn"
-		print "#if BIT_LOOKUP"
-		print "\t\tch <= LATIN1_MAX ? (mask & (1 << ch)) :"
-		print "#endif"
-		print "\t\tlookup(ch);"
-	} else
+	if (mask > 0)
+		print "\treturn ch <= LATIN1_MAX ? BSCHK(bitset, ch) : lookup(ch);"
+	else
 		print "\treturn lookup(ch);"
 	print  "}"
 }

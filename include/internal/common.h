@@ -22,8 +22,4 @@
 
 #define LATIN1_MAX 0xFF
 
-#if BITINT_MAXWIDTH >= LATIN1_MAX + 1
-#	define BIT_LOOKUP 1
-#endif
-
 #endif /* !RUNE_INTERNAL_COMMON_H */

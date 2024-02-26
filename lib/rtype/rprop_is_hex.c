@@ -3,21 +3,21 @@
 #include "rtype.h"
 #include "rune.h"
 
+#include "internal/bitset.h"
 #include "internal/common.h"
 
 /* clang-format off */
 
-#if BIT_LOOKUP
-static const unsigned _BitInt(LATIN1_MAX + 1) mask =
-	0x000000000000000000000000000000000000007E0000007E03FF000000000000uwb;
-#endif
+static const uint64_t bitset[] = {
+	UINT64_C(0x03FF000000000000),
+	UINT64_C(0x0000007E0000007E),
+	UINT64_C(0x0000000000000000),
+	UINT64_C(0x0000000000000000),
+};
 
 static const struct {
 	rune lo, hi;
 } lookup_tbl[] = {
-	{RUNE_C(0x000030), RUNE_C(0x000039)},
-	{RUNE_C(0x000041), RUNE_C(0x000046)},
-	{RUNE_C(0x000061), RUNE_C(0x000066)},
 	{RUNE_C(0x00FF10), RUNE_C(0x00FF19)},
 	{RUNE_C(0x00FF21), RUNE_C(0x00FF26)},
 	{RUNE_C(0x00FF41), RUNE_C(0x00FF46)},
@@ -32,9 +32,5 @@ static const struct {
 bool
 rprop_is_hex(rune ch)
 {
-	return
-#if BIT_LOOKUP
-		ch <= LATIN1_MAX ? (mask & (1 << ch)) :
-#endif
-		lookup(ch);
+	return ch <= LATIN1_MAX ? BSCHK(bitset, ch) : lookup(ch);
 }

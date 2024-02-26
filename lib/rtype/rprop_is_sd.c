@@ -3,19 +3,21 @@
 #include "rtype.h"
 #include "rune.h"
 
+#include "internal/bitset.h"
 #include "internal/common.h"
 
 /* clang-format off */
 
-#if BIT_LOOKUP
-static const unsigned _BitInt(LATIN1_MAX + 1) mask =
-	0x0000000000000000000000000000000000000600000000000000000000000000uwb;
-#endif
+static const uint64_t bitset[] = {
+	UINT64_C(0x0000000000000000),
+	UINT64_C(0x0000060000000000),
+	UINT64_C(0x0000000000000000),
+	UINT64_C(0x0000000000000000),
+};
 
 static const struct {
 	rune lo, hi;
 } lookup_tbl[] = {
-	{RUNE_C(0x000069), RUNE_C(0x00006A)},
 	{RUNE_C(0x00012F), RUNE_C(0x00012F)},
 	{RUNE_C(0x000249), RUNE_C(0x000249)},
 	{RUNE_C(0x000268), RUNE_C(0x000268)},
@@ -60,9 +62,5 @@ static const struct {
 bool
 rprop_is_sd(rune ch)
 {
-	return
-#if BIT_LOOKUP
-		ch <= LATIN1_MAX ? (mask & (1 << ch)) :
-#endif
-		lookup(ch);
+	return ch <= LATIN1_MAX ? BSCHK(bitset, ch) : lookup(ch);
 }

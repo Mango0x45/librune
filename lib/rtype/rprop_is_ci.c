@@ -3,28 +3,21 @@
 #include "rtype.h"
 #include "rune.h"
 
+#include "internal/bitset.h"
 #include "internal/common.h"
 
 /* clang-format off */
 
-#if BIT_LOOKUP
-static const unsigned _BitInt(LATIN1_MAX + 1) mask =
-	0x00000000000000000190A1000000000000000001400000000400408000000000uwb;
-#endif
+static const uint64_t bitset[] = {
+	UINT64_C(0x0400408000000000),
+	UINT64_C(0x0000000140000000),
+	UINT64_C(0x0190A10000000000),
+	UINT64_C(0x0000000000000000),
+};
 
 static const struct {
 	rune lo, hi;
 } lookup_tbl[] = {
-	{RUNE_C(0x000027), RUNE_C(0x000027)},
-	{RUNE_C(0x00002E), RUNE_C(0x00002E)},
-	{RUNE_C(0x00003A), RUNE_C(0x00003A)},
-	{RUNE_C(0x00005E), RUNE_C(0x00005E)},
-	{RUNE_C(0x000060), RUNE_C(0x000060)},
-	{RUNE_C(0x0000A8), RUNE_C(0x0000A8)},
-	{RUNE_C(0x0000AD), RUNE_C(0x0000AD)},
-	{RUNE_C(0x0000AF), RUNE_C(0x0000AF)},
-	{RUNE_C(0x0000B4), RUNE_C(0x0000B4)},
-	{RUNE_C(0x0000B7), RUNE_C(0x0000B8)},
 	{RUNE_C(0x0002B0), RUNE_C(0x00036F)},
 	{RUNE_C(0x000374), RUNE_C(0x000375)},
 	{RUNE_C(0x00037A), RUNE_C(0x00037A)},
@@ -463,9 +456,5 @@ static const struct {
 bool
 rprop_is_ci(rune ch)
 {
-	return
-#if BIT_LOOKUP
-		ch <= LATIN1_MAX ? (mask & (1 << ch)) :
-#endif
-		lookup(ch);
+	return ch <= LATIN1_MAX ? BSCHK(bitset, ch) : lookup(ch);
 }
