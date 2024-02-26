@@ -36,6 +36,23 @@ C
 gawk '
 BEGIN {
 	FS = "( *#.*| +; +)"
+	map["Canonical"] = "CAN"
+	map["Compat"]    = "COM"
+	map["Circle"]    = "ENC"
+	map["Final"]     = "FIN"
+	map["Font"]      = "FONT"
+	map["Fraction"]  = "FRA"
+	map["Initial"]   = "INIT"
+	map["Isolated"]  = "ISO"
+	map["Medial"]    = "MED"
+	map["Narrow"]    = "NAR"
+	map["Nobreak"]   = "NB"
+	map["Small"]     = "SML"
+	map["Square"]    = "SQR"
+	map["Sub"]       = "SUB"
+	map["Super"]     = "SUP"
+	map["Vertical"]  = "VERT"
+	map["Wide"]      = "WIDE"
 }
 
 /^[^#]/ {
@@ -44,15 +61,15 @@ BEGIN {
 	hi = strtonum("0X" a[n])
 
 	for (i = lo; i <= hi; i++)
-		props[i] = $2
+		props[i] = map[$2]
 }
 
 END {
 	for (i = 0; i <= 0xFF; i++)
-		printf "%12s,\n", "DT_" (props[i] ? toupper(props[i]) : "NONE")
+		printf "%7s,\n", "DT_" (props[i] ? props[i] : "NONE")
 }
 ' /tmp/librune/rtype/DerivedDecompositionType.txt \
-| paste -d' ' - - - - \
+| paste -d' ' - - - - - - - - \
 | sed 's/^/\t/'
 
 cat <<C
@@ -67,6 +84,23 @@ C
 gawk '
 BEGIN {
 	FS = "( *#.*| +; +)"
+	map["Canonical"] = "CAN"
+	map["Compat"]    = "COM"
+	map["Circle"]    = "ENC"
+	map["Final"]     = "FIN"
+	map["Font"]      = "FONT"
+	map["Fraction"]  = "FRA"
+	map["Initial"]   = "INIT"
+	map["Isolated"]  = "ISO"
+	map["Medial"]    = "MED"
+	map["Narrow"]    = "NAR"
+	map["Nobreak"]   = "NB"
+	map["Small"]     = "SML"
+	map["Square"]    = "SQR"
+	map["Sub"]       = "SUB"
+	map["Super"]     = "SUP"
+	map["Vertical"]  = "VERT"
+	map["Wide"]      = "WIDE"
 }
 
 /^[^#]/ {
@@ -75,7 +109,7 @@ BEGIN {
 	hi = strtonum("0X" a[n])
 
 	for (i = lo; i <= hi; i++)
-		props[i] = $2
+		props[i] = map[$2]
 }
 
 END {
@@ -85,8 +119,7 @@ END {
 		lo = i
 		while (props[lo] == props[i + 1])
 			i++
-		printf("\t{RUNE_C(0x%06X), RUNE_C(0x%06X), DT_%s},\n",
-		       lo, i, toupper(props[lo]))
+		printf("\t{RUNE_C(0x%06X), RUNE_C(0x%06X), DT_%s},\n", lo, i, props[lo])
 	}
 }
 ' /tmp/librune/rtype/DerivedDecompositionType.txt | sort
