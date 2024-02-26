@@ -44,12 +44,6 @@ simply pass the `-r` flag to the build script:
 ./make -r
 ```
 
-You can also pass the `-l` flag to enable link-time optimizations:
-
-```sh
-./make -lr
-```
-
 
 ## Installation
 

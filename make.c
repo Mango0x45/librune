@@ -17,9 +17,10 @@
 #define CFLAGS_ALL WARNINGS, "-pipe", "-std=c2x"
 #define CFLAGS_DBG CFLAGS_ALL, "-g", "-ggdb3", "-Og"
 #ifdef __APPLE__
-#	define CFLAGS_RLS CFLAGS_ALL, "-O3"
+#	define CFLAGS_RLS CFLAGS_ALL, "-O3", "-flto"
 #else
-#	define CFLAGS_RLS CFLAGS_ALL, "-O3", "-march=native", "-mtune=native"
+#	define CFLAGS_RLS \
+		CFLAGS_ALL, "-O3", "-flto", "-march=native", "-mtune=native"
 #endif
 
 #define _CMDPRC(C, F) \
@@ -51,10 +52,10 @@ main(int argc, char **argv)
 	cbsinit(argc, argv);
 	rebuild();
 
-	while ((opt = getopt(argc, argv, "flr")) != -1) {
+	while ((opt = getopt(argc, argv, "fr")) != -1) {
 		switch (opt) {
 		case '?':
-			fprintf(stderr, "Usage: %s [-flr]\n", *argv);
+			fprintf(stderr, "Usage: %s [-fr]\n", *argv);
 			exit(EXIT_FAILURE);
 		default:
 			flags |= 1 << (opt - 'a');
@@ -130,8 +131,6 @@ work(void *p)
 		else
 			env_or_default(&sv, "CFLAGS", CFLAGS_DBG);
 		cmdaddv(&c, sv.buf, sv.len);
-		if (flagset('l'))
-			cmdadd(&c, "-flto");
 		cmdadd(&c, "-Iinclude", "-fPIC", "-o", c.dst, "-c", src);
 		CMDPRC2(c);
 	}
