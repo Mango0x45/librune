@@ -204,12 +204,38 @@ typedef unsigned int rprop_vo_bf;
 #define VO_TU ((rprop_vo_bf)1 << 2) /* Transformed ∨ Upright */
 #define VO_TR ((rprop_vo_bf)1 << 3) /* Transformed ∨ Rotated */
 
+typedef unsigned rprop_wb_bf;
+#define WB_XX        ((rprop_wb_bf)1 << 0)  /* Other */
+#define WB_CR        ((rprop_wb_bf)1 << 1)  /* CR */
+#define WB_DQ        ((rprop_wb_bf)1 << 2)  /* Double_Quote */
+#define WB_EB        ((rprop_wb_bf)1 << 3)  /* E_Base */
+#define WB_EBG       ((rprop_wb_bf)1 << 4)  /* E_Base_GAZ */
+#define WB_EM        ((rprop_wb_bf)1 << 5)  /* E_Modifier */
+#define WB_EX        ((rprop_wb_bf)1 << 6)  /* ExtendNumLet */
+#define WB_EXTEND    ((rprop_wb_bf)1 << 7)  /* Extend */
+#define WB_FO        ((rprop_wb_bf)1 << 8)  /* Format */
+#define WB_GAZ       ((rprop_wb_bf)1 << 9)  /* Glue_After_Zwj */
+#define WB_HL        ((rprop_wb_bf)1 << 10) /* Hebrew_Letter */
+#define WB_KA        ((rprop_wb_bf)1 << 11) /* Katakana */
+#define WB_LE        ((rprop_wb_bf)1 << 12) /* ALetter */
+#define WB_LF        ((rprop_wb_bf)1 << 13) /* LF */
+#define WB_MB        ((rprop_wb_bf)1 << 14) /* MidNumLet */
+#define WB_ML        ((rprop_wb_bf)1 << 15) /* MidLetter */
+#define WB_MN        ((rprop_wb_bf)1 << 16) /* MidNum */
+#define WB_NL        ((rprop_wb_bf)1 << 17) /* Newline */
+#define WB_NU        ((rprop_wb_bf)1 << 18) /* Numeric */
+#define WB_RI        ((rprop_wb_bf)1 << 19) /* Regional_Indicator */
+#define WB_SQ        ((rprop_wb_bf)1 << 20) /* Single_Quote */
+#define WB_WSEGSPACE ((rprop_wb_bf)1 << 21) /* WSegSpace */
+#define WB_ZWJ       ((rprop_wb_bf)1 << 22) /* ZWJ */
+
 [[unsequenced]] rprop_dt_bf rprop_get_dt(rune);
 [[unsequenced]] rprop_gc_bf rprop_get_gc(rune);
 [[unsequenced]] rprop_jg_bf rprop_get_jg(rune);
 [[unsequenced]] rprop_jt_bf rprop_get_jt(rune);
 [[unsequenced]] rprop_nt_bf rprop_get_nt(rune);
 [[unsequenced]] rprop_vo_bf rprop_get_vo(rune);
+[[unsequenced]] rprop_wb_bf rprop_get_wb(rune);
 
 [[unsequenced]] double rprop_get_nv(rune);
 [[unsequenced]] rune rprop_get_equideo(rune);
