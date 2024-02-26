@@ -107,6 +107,15 @@ main(int argc, char **argv)
 			CMDPRC2(c);
 		}
 
+		if (flagset('f')
+		    || foutdatedv("librune.so", (const char **)g.gl_pathv, g.gl_pathc))
+		{
+			c.dst = "librune.so";
+			cmdadd(&c, "cc", "-shared", "-o", "librune.so");
+			cmdaddv(&c, g.gl_pathv, g.gl_pathc);
+			CMDPRC2(c);
+		}
+
 		globfree(&g);
 	}
 
