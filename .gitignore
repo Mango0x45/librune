@@ -1,12 +1,20 @@
-.cache/
-test/gbrk
+# Compilation output
 *.[ao]
+librune.so
+
+# Test data
 a.out
-compile_commands.json
 failures
 main
-make
 main.c
+make
+test.c
+test/gbrk
+
+# LSP
+.cache/
+compile_commands.json
+
+# Miscellaneous
 Makefile
 NOTE-TO-SELF
-test.c
