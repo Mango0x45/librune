@@ -55,10 +55,10 @@ typedef unsigned rprop_jt_bf;
 #define JT_T ((rprop_jt_bf)1 << 5) /* Transparent */
 
 typedef unsigned rprop_nt_bf;
-#define NT_NONE    ((rprop_nt_bf)1 << 0)
-#define NT_DECIMAL ((rprop_nt_bf)1 << 1)
-#define NT_DIGIT   ((rprop_nt_bf)1 << 2)
-#define NT_NUMERIC ((rprop_nt_bf)1 << 3)
+#define NT_NONE ((rprop_nt_bf)1 << 0)
+#define NT_DE   ((rprop_nt_bf)1 << 1)
+#define NT_DI   ((rprop_nt_bf)1 << 2)
+#define NT_NU   ((rprop_nt_bf)1 << 3)
 
 typedef uint_fast32_t rprop_dt_bf;
 #define DT_NONE      ((rprop_dt_bf)1 << 0)

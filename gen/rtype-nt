@@ -36,6 +36,9 @@ C
 gawk '
 BEGIN {
 	FS = "( *#.*| +; +)"
+	map["Decimal"] = "DE"
+	map["Digit"]   = "DI"
+	map["Numeric"] = "NU"
 }
 
 /^[^#]/ {
@@ -44,12 +47,12 @@ BEGIN {
 	hi = strtonum("0X" a[n])
 
 	for (i = lo; i <= hi; i++)
-		props[i] = toupper($2)
+		props[i] = map[$2]
 }
 
 END {
 	for (i = 0; i <= 0xFF; i++)
-		printf "%10s,\n", "NT_" (props[i] ? props[i] : "NONE")
+		printf "%8s,\n", "NT_" (props[i] ? props[i] : "NONE")
 }
 ' /tmp/librune/rtype/DerivedNumericType.txt \
 | paste -d' ' - - - - - - - - \
@@ -67,6 +70,9 @@ C
 gawk '
 BEGIN {
 	FS = "( *#.*| +; +)"
+	map["Decimal"] = "DE"
+	map["Digit"]   = "DI"
+	map["Numeric"] = "NU"
 }
 
 /^[^#]/ {
@@ -75,7 +81,7 @@ BEGIN {
 	hi = strtonum("0X" a[n])
 
 	for (i = lo; i <= hi; i++)
-		props[i] = toupper($2)
+		props[i] = map[$2]
 }
 
 END {
