@@ -35,6 +35,8 @@ lookup(rune ch)
 	if (ch <= LATIN1_MAX)
 		return LATIN1_TABLE[ch];
 #endif
+	if (ch >= lengthof(TABLE))
+		return DEFAULT;
 
 	lo = 0;
 	hi = lengthof(TABLE) - 1;
