@@ -29,7 +29,7 @@
 [[gnu::always_inline]] static TYPE
 lookup(rune ch)
 {
-	ptrdiff_t lo, hi;
+	ptrdiff_t i, lo, hi;
 
 #ifdef LATIN1_TABLE
 	if (ch <= LATIN1_MAX)
@@ -41,9 +41,13 @@ lookup(rune ch)
 	lo = 0;
 	hi = lengthof(TABLE) - 1;
 
-	while (lo <= hi) {
-		ptrdiff_t i = (lo + hi) / 2;
+#ifdef INITIAL_INDEX
+	i = INITIAL_INDEX;
+#else
+	i = (lo + hi) / 2;
+#endif
 
+	do {
 		if (ch < TABLE[i].LO)
 			hi = i - 1;
 		else if (ch > TABLE[i].HI)
@@ -54,7 +58,8 @@ lookup(rune ch)
 #else
 			return true;
 #endif
-	}
+		i = (lo + hi) / 2;
+	} while (lo <= hi);
 
 	return DEFAULT;
 }
