@@ -197,6 +197,8 @@ typedef unsigned _BitInt(103) rprop_jg_bf;
 #define JG_YUDH_HE                  ((rprop_jg_bf)1 << 101)
 #define JG_ZAIN                     ((rprop_jg_bf)1 << 102)
 #define JG_ZHAIN                    ((rprop_jg_bf)1 << 103)
+#define JG_NO_JOINING_GROUP         JG_NONE
+#define JG_HAMZA_ON_HEH_GOAL        JG_TEH_MARBUTA_GOAL
 
 typedef unsigned rprop_vo_bf;
 #define VO_U  ((rprop_vo_bf)1 << 0) /* Upright */
