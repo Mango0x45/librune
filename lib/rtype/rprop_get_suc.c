@@ -5,6 +5,7 @@
 
 #define DEFAULT       ch
 #define HAS_VALUE     1
+#define LATIN1_TABLE  rtype_suc_lat1_tbl
 #define TABLE         rtype_suc_tbl
 #define TYPE          rune
 #define RANGE         0

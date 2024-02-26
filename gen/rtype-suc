@@ -26,9 +26,32 @@ cat <<C
 /* IWYU pragma: private */
 /* clang-format off */
 
+#include "../common.h"
 #include "../types.h"
 #include "../../rtype.h"
 #include "../../rune.h"
+
+static const rune rtype_suc_lat1_tbl[] = {
+C
+
+gawk '
+BEGIN {
+	FS = ";"
+}
+
+{
+	if ((n = strtonum("0X" $1)) > 0xFF)
+		exit
+	printf "0x%03X,\n", ($13 != "" ? strtonum("0X" $13) : n)
+}
+' /tmp/librune/rtype/UnicodeData.txt \
+| paste -d' ' - - - - - - - - \
+| sed 's/^/\t/'
+
+cat <<C
+};
+
+static_assert(lengthof(rtype_suc_lat1_tbl) == LATIN1_MAX + 1);
 
 static const struct {
 	rune key, val;
@@ -41,7 +64,8 @@ BEGIN {
 }
 
 $13 != "" {
-	k = strtonum("0X" $1)
+	if ((k = strtonum("0X" $1)) <= 0xFF)
+		next
 	v = strtonum("0X" $13)
 	printf "\t{RUNE_C(0x%06X), RUNE_C(0x%06X)},\n", k, v
 }
