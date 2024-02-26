@@ -46,7 +46,7 @@ typedef uint_fast32_t rprop_gc_bf;
 #define GC_P \
 	(GC_PC | GC_PD | GC_PE | GC_PF | GC_PI | GC_PO | GC_PS) /* Punctuation */
 
-typedef unsigned int rprop_jt_bf;
+typedef unsigned rprop_jt_bf;
 #define JT_U ((rprop_jt_bf)1 << 0) /* Non Joining */
 #define JT_C ((rprop_jt_bf)1 << 1) /* Join Causing */
 #define JT_D ((rprop_jt_bf)1 << 2) /* Dual Joining */
@@ -54,7 +54,7 @@ typedef unsigned int rprop_jt_bf;
 #define JT_L ((rprop_jt_bf)1 << 3) /* Left Joining */
 #define JT_T ((rprop_jt_bf)1 << 5) /* Transparent */
 
-typedef unsigned int rprop_nt_bf;
+typedef unsigned rprop_nt_bf;
 #define NT_NONE    ((rprop_nt_bf)1 << 0)
 #define NT_DECIMAL ((rprop_nt_bf)1 << 1)
 #define NT_DIGIT   ((rprop_nt_bf)1 << 2)
@@ -198,7 +198,7 @@ typedef unsigned _BitInt(103) rprop_jg_bf;
 #define JG_ZAIN                     ((rprop_jg_bf)1 << 102)
 #define JG_ZHAIN                    ((rprop_jg_bf)1 << 103)
 
-typedef unsigned int rprop_vo_bf;
+typedef unsigned rprop_vo_bf;
 #define VO_U  ((rprop_vo_bf)1 << 0) /* Upright */
 #define VO_R  ((rprop_vo_bf)1 << 1) /* Rotated */
 #define VO_TU ((rprop_vo_bf)1 << 2) /* Transformed ∨ Upright */
