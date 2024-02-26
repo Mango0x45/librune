@@ -9,7 +9,7 @@ report()
 	esac
 }
 
-readonly src=../data/GraphemeBreakTest.txt
+readonly src=data/GraphemeBreakTest.txt
 
 set -e
 cd "${0%/*}"
