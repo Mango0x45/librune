@@ -204,18 +204,6 @@ typedef unsigned int rprop_vo_bf;
 #define VO_TU ((rprop_vo_bf)1 << 2) /* Transformed ∨ Upright */
 #define VO_TR ((rprop_vo_bf)1 << 3) /* Transformed ∨ Rotated */
 
-[[unsequenced]] bool riscntrl(rune);
-[[unsequenced]] bool risdigit(rune);
-[[unsequenced]] bool risgraph(rune);
-[[unsequenced]] bool rislower(rune);
-[[unsequenced]] bool rismark(rune);
-[[unsequenced]] bool risnumber(rune);
-[[unsequenced]] bool rispunct(rune);
-[[unsequenced]] bool risspace(rune);
-[[unsequenced]] bool rissymbol(rune);
-[[unsequenced]] bool ristitle(rune);
-[[unsequenced]] bool risupper(rune);
-
 [[unsequenced]] rprop_dt_bf rprop_get_dt(rune);
 [[unsequenced]] rprop_gc_bf rprop_get_gc(rune);
 [[unsequenced]] rprop_jg_bf rprop_get_jg(rune);
