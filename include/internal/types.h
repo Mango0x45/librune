@@ -6,6 +6,7 @@
 typedef unsigned char char8_t;
 typedef uint_least32_t rune;
 
+/* TODO: Simplify this when GCC 14 drops (we can redefine this struct) */
 #if _RUNE_NEEDS_U8VIEW && !_RUNE_HAS_U8VIEW
 struct u8view {
 	const char8_t *p;
