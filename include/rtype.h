@@ -4,7 +4,13 @@
 #include <limits.h>
 #include <stdint.h>
 
+#include "unicode.h"
+
 #include "internal/types.h"
+
+/* Note to self: Always keep this on the next version */
+static_assert(!UNICODE_PREREQ(15, 1, 1),
+              "Sanity check: ensure rtype.h conforms to Unicode > 15.1.0");
 
 typedef uint_fast32_t rprop_gc_bf;
 #define GC_CN ((rprop_gc_bf)1 << 0)  /* Not Assigned */
