@@ -28,7 +28,10 @@
 
 #define RUNE_C(x) UINT32_C(x)
 
-static constexpr rune RUNE_ERROR = RUNE_C(0xFFFD);
-static constexpr rune RUNE_MAX = RUNE_C(0x10FFFF);
+/* clang-format off */
+static constexpr rune ASCII_MAX  = RUNE_C(0x00007F);
+static constexpr rune LATIN1_MAX = RUNE_C(0x0000FF);
+static constexpr rune RUNE_ERROR = RUNE_C(0x00FFFD);
+static constexpr rune RUNE_MAX   = RUNE_C(0x10FFFF);
 
 #endif /* !RUNE_RUNE_H */

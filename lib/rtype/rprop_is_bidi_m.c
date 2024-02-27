@@ -4,7 +4,6 @@
 #include "rune.h"
 
 #include "internal/bitset.h"
-#include "internal/common.h"
 
 /* clang-format off */
 

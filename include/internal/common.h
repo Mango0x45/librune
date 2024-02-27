@@ -20,6 +20,4 @@ static constexpr rune _2B_MAX = RUNE_C(0x0007FF);
 static constexpr rune _3B_MAX = RUNE_C(0x00FFFF);
 static constexpr rune _4B_MAX = RUNE_C(0x10FFFF);
 
-#define LATIN1_MAX 0xFF
-
 #endif /* !RUNE_INTERNAL_COMMON_H */

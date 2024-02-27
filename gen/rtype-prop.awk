@@ -7,7 +7,6 @@ BEGIN {
 	print "#include \"rune.h\""
 	print ""
 	print "#include \"internal/bitset.h\""
-	print "#include \"internal/common.h\""
 	print ""
 	print "/* clang-format off */"
 	print ""
