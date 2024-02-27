@@ -47,16 +47,19 @@ static uint32_t flags;
 int
 main(int argc, char **argv)
 {
-	int opt;
+	int opt, procs = -1;
 
 	cbsinit(argc, argv);
 	rebuild();
 
-	while ((opt = getopt(argc, argv, "fr")) != -1) {
+	while ((opt = getopt(argc, argv, "fj:r")) != -1) {
 		switch (opt) {
 		case '?':
-			fprintf(stderr, "Usage: %s [-fr]\n", *argv);
+			fprintf(stderr, "Usage: %s [-j procs] [-fr]\n", *argv);
 			exit(EXIT_FAILURE);
+		case 'j':
+			procs = atoi(optarg);
+			break;
 		default:
 			flags |= 1 << (opt - 'a');
 		}
@@ -77,20 +80,19 @@ main(int argc, char **argv)
 		}
 	} else {
 		cmd_t c = {0};
-		size_t n;
 		glob_t g;
 		tpool_t tp;
 
 		if (glob("lib/*/*.c", 0, globerr, &g))
 			die("glob");
 
-		if ((n = nproc()) == -1) {
+		if (procs == -1 && (procs = nproc()) == -1) {
 			if (errno)
 				die("nproc");
-			n = 8;
+			procs = 8;
 		}
 
-		tpinit(&tp, n);
+		tpinit(&tp, procs);
 		for (size_t i = 0; i < g.gl_pathc; i++)
 			tpenq(&tp, work, g.gl_pathv[i], NULL);
 		tpwait(&tp);
