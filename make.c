@@ -68,7 +68,8 @@ main(int argc, char **argv)
 	if (argc >= 1) {
 		if (streq(*argv, "clean")) {
 			cmd_t c = {0};
-			cmdadd(&c, "find", ".", "-name", "*.[ao]", "-delete");
+			cmdadd(&c, "find", ".", "(", "-name", "*.[ao]", "-or", "-name",
+			       "*.so", ")", "-delete");
 			CMDPRC(c);
 		} else {
 			diex("invalid subcommand -- '%s'", *argv);
