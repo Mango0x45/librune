@@ -80,10 +80,8 @@ typedef uint_fast32_t rprop_dt_bf;
 #define DT_VERT ((rprop_dt_bf)1 << 16)
 #define DT_WIDE ((rprop_dt_bf)1 << 17)
 
-/* GCC at the time of writing doesn’t properly support _BitInt */
-#ifdef __SIZEOF_INT128__
-__extension__ typedef unsigned __int128 rprop_jg_bf;
-#elif BITINT_MAXWIDTH >= 128
+/* TODO: Don’t use bitfields? */
+#if BITINT_MAXWIDTH >= 128
 typedef unsigned _BitInt(128) rprop_jg_bf;
 #elif BITINT_MAXWIDTH >= 103
 /* Highly unlikely this is ever needed, but who knows.  Powers of 2 generate
