@@ -3,13 +3,9 @@
 
 #include "internal/common.h"
 
-#define MAPPING(s) \
-	(struct rmapping) \
-	{ \
-		.p = (s), .len = lengthof(s) - 1 \
-	}
-
 /* clang-format off */
+
+#define MAPPING(s) (struct rmapping){.p = s, .len = lengthof(s) - 1}
 
 struct rmapping
 rprop_get_lc(rune ch, struct lcctx ctx)
@@ -31,7 +27,7 @@ rprop_get_lc(rune ch, struct lcctx ctx)
 			switch (ch) {
 			case 'I':
 				return MAPPING(U"i\u0307");
-			case 'J';
+			case 'J':
 				return MAPPING(U"j\u0307");
 			case U'Į':
 				return MAPPING(U"į\u0307");
