@@ -23,6 +23,7 @@ This library contains the following headers:
 - `mbstring.h` — multibyte-string encoding, decoding, iteration, etc.
 - `rtype.h` — rune categorization à la `ctype.h`
 - `rune.h` — rune-constants, -macros, and -functions
+- `unicode.h` — macros for checking supported unicode releases
 
 
 ## Compilation
