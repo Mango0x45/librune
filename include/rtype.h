@@ -1,6 +1,7 @@
 #ifndef RUNE_RTYPE_H
 #define RUNE_RTYPE_H
 
+#include <limits.h>
 #include <stdint.h>
 
 #include "internal/types.h"

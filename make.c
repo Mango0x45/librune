@@ -110,8 +110,11 @@ main(int argc, char **argv)
 		if (flagset('f')
 		    || foutdatedv("librune.so", (const char **)g.gl_pathv, g.gl_pathc))
 		{
+			struct strv sv = {};
 			c.dst = "librune.so";
-			cmdadd(&c, "cc", "-shared", "-o", "librune.so");
+			env_or_default(&sv, "CC", CC);
+			cmdaddv(&c, sv.buf, sv.len);
+			cmdadd(&c, "-shared", "-o", "librune.so");
 			cmdaddv(&c, g.gl_pathv, g.gl_pathc);
 			CMDPRC2(c);
 		}

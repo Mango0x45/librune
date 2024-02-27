@@ -28,7 +28,7 @@
 
 #define RUNE_C(x) UINT32_C(x)
 
-#define RUNE_ERROR (RUNE_C(0x00FFFD))
-#define RUNE_MAX   (RUNE_C(0x10FFFF))
+static constexpr rune RUNE_ERROR = RUNE_C(0xFFFD);
+static constexpr rune RUNE_MAX = RUNE_C(0x10FFFF);
 
 #endif /* !RUNE_RUNE_H */

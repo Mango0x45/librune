@@ -5,7 +5,10 @@
 #define _RUNE_NEEDS_U8VIEW 1
 #include "internal/types.h" /* IWYU pragma: export */
 
-#define U8_LEN_MAX (4)
+#define PRIsU8          ".*s"
+#define U8_PRI_ARGS(sv) ((int)(sv).len), ((sv).p)
+
+static constexpr int U8_LEN_MAX = 4;
 
 char8_t *u8chk(const char8_t *, size_t);
 char8_t *u8chr(const char8_t *, rune, size_t);
